@@ -1,0 +1,14 @@
+
+.vs/AnimeSoftware/v16/
+
+AnimeSoftware/bin/Debug/
+
+*.resources
+
+*.txt
+
+*.cache
+
+*.exe
+
+*.pdb
