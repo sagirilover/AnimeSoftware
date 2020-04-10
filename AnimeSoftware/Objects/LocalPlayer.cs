@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AnimeSoftware.Injections;
 using hazedumper;
 
-namespace AnimeSoftware
+namespace AnimeSoftware.Objects
 {
     class LocalPlayer : IDisposable
     {
@@ -120,7 +121,7 @@ namespace AnimeSoftware
         public static void Jump()
         {
             Memory.Write<int>(Memory.Client + signatures.dwForceJump, 5);
-            Thread.Sleep(20);
+            Thread.Sleep(15);
             Memory.Write<int>(Memory.Client + signatures.dwForceJump, 4);
         }
         public static int Flags
@@ -130,12 +131,20 @@ namespace AnimeSoftware
                 return Memory.Read<int>(Ptr + netvars.m_fFlags);
             }
         }
+
+        public static bool IsDead
+        {
+            get
+            {
+                return Health <= 0;
+            }
+        }
         public static float Speed
         {
             get
             {
                 Vector3 velocity = Velocity;
-                float result = (float)Math.Sqrt(velocity.x * velocity.x + velocity.y * velocity.y + velocity.z * velocity.z);
+                float result = (float)Math.Sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
                 return result;
             }
         }

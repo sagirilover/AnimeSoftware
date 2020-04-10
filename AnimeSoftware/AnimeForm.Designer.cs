@@ -76,6 +76,9 @@
             this.chatcleanerCheckBox = new System.Windows.Forms.CheckBox();
             this.chokeTrackBar = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
+            this.clantagCheckBox = new System.Windows.Forms.CheckBox();
+            this.velCheckBox = new System.Windows.Forms.CheckBox();
+            this.velnameCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nickBox)).BeginInit();
             this.nickBoxContextMenuStrip.SuspendLayout();
             this.trashControl.SuspendLayout();
@@ -549,11 +552,47 @@
             this.label6.TabIndex = 37;
             this.label6.Text = "Choke Percentage";
             // 
+            // clantagCheckBox
+            // 
+            this.clantagCheckBox.AutoSize = true;
+            this.clantagCheckBox.Location = new System.Drawing.Point(335, 205);
+            this.clantagCheckBox.Name = "clantagCheckBox";
+            this.clantagCheckBox.Size = new System.Drawing.Size(66, 17);
+            this.clantagCheckBox.TabIndex = 38;
+            this.clantagCheckBox.Text = "ClanTag";
+            this.clantagCheckBox.UseVisualStyleBackColor = true;
+            this.clantagCheckBox.CheckedChanged += new System.EventHandler(this.clantagCheckBox_CheckedChanged);
+            // 
+            // velCheckBox
+            // 
+            this.velCheckBox.AutoSize = true;
+            this.velCheckBox.Location = new System.Drawing.Point(335, 228);
+            this.velCheckBox.Name = "velCheckBox";
+            this.velCheckBox.Size = new System.Drawing.Size(82, 17);
+            this.velCheckBox.TabIndex = 40;
+            this.velCheckBox.Text = "VelocityTag";
+            this.velCheckBox.UseVisualStyleBackColor = true;
+            this.velCheckBox.CheckedChanged += new System.EventHandler(this.velCheckBox_CheckedChanged);
+            // 
+            // velnameCheckBox
+            // 
+            this.velnameCheckBox.AutoSize = true;
+            this.velnameCheckBox.Location = new System.Drawing.Point(351, 251);
+            this.velnameCheckBox.Name = "velnameCheckBox";
+            this.velnameCheckBox.Size = new System.Drawing.Size(111, 17);
+            this.velnameCheckBox.TabIndex = 41;
+            this.velnameCheckBox.Text = "MaxVelocityName";
+            this.velnameCheckBox.UseVisualStyleBackColor = true;
+            this.velnameCheckBox.CheckedChanged += new System.EventHandler(this.velnameCheckBox_CheckedChanged);
+            // 
             // AnimeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 395);
+            this.Controls.Add(this.velnameCheckBox);
+            this.Controls.Add(this.velCheckBox);
+            this.Controls.Add(this.clantagCheckBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.chokeTrackBar);
             this.Controls.Add(this.chatcleanerCheckBox);
@@ -642,6 +681,9 @@
         private System.Windows.Forms.CheckBox chatcleanerCheckBox;
         private System.Windows.Forms.TrackBar chokeTrackBar;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox clantagCheckBox;
+        private System.Windows.Forms.CheckBox velCheckBox;
+        private System.Windows.Forms.CheckBox velnameCheckBox;
     }
 }
 

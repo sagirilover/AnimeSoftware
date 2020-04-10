@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnimeSoftware.Objects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -53,7 +54,7 @@ namespace AnimeSoftware
             }
         }
 
-        public static string version = "v2.40";
+        public static string version = "v2.60";
         
     }
 }

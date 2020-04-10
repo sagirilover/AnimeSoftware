@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using hazedumper;
 using System.Drawing;
+using AnimeSoftware.Objects;
 using System.Threading;
 
-namespace AnimeSoftware
+namespace AnimeSoftware.Hacks
 {
     class Visuals
     {

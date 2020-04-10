@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Checks.cs" />
     <Compile Include="Hacks\ChatSpammer.cs" />
+    <Compile Include="Hacks\ClanTag.cs" />
     <Compile Include="Hacks\ConVarManager.cs" />
     <Compile Include="Hacks\PerfectNade.cs" />
     <Compile Include="Hacks\Visuals.cs" />
@@ -65,11 +66,12 @@
     <Compile Include="Hacks\RunboostBot.cs" />
     <Compile Include="Hacks\WeaponSpammer.cs" />
     <Compile Include="Hotkey.cs" />
-    <Compile Include="Objects\ConVar.cs" />
+    <Compile Include="Injections\CreateThread.cs" />
+    <Compile Include="Injections\ConVar.cs" />
     <Compile Include="Hacks\Aimbot.cs" />
     <Compile Include="Hacks\BHop.cs" />
     <Compile Include="Hacks\BlockBot.cs" />
-    <Compile Include="Injections\ClientCMD.cs" />
+    <Compile Include="Objects\ClientCMD.cs" />
     <Compile Include="Injections\DllImport.cs" />
     <Compile Include="Hacks\DoorSpam.cs" />
     <Compile Include="Objects\Entity.cs" />

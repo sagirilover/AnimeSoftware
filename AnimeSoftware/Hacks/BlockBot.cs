@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using AnimeSoftware.Objects;
+using AnimeSoftware.Injections;
 
-namespace AnimeSoftware
+namespace AnimeSoftware.Hacks
 {
     class BlockBot
     {

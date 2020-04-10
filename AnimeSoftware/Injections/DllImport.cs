@@ -5,10 +5,16 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnimeSoftware
+namespace AnimeSoftware.Injections
 {
     class DllImport
     {
+        [DllImport("kernel32.dll")]
+        internal static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, IntPtr nSize, ref UInt32 lpNumberOfBytesWritten);
+
+        [DllImport("kernel32.dll")]
+        public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] buffer, int size, int lpNumberOfBytesWritten);
+
         [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern int GetAsyncKeyState(int vKey);
 

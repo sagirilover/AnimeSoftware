@@ -250,5 +250,41 @@ namespace AnimeSoftware.Properties {
                 this["bhopChoke"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool clanTag {
+            get {
+                return ((bool)(this["clanTag"]));
+            }
+            set {
+                this["clanTag"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool velTag {
+            get {
+                return ((bool)(this["velTag"]));
+            }
+            set {
+                this["velTag"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool velName {
+            get {
+                return ((bool)(this["velName"]));
+            }
+            set {
+                this["velName"] = value;
+            }
+        }
     }
 }

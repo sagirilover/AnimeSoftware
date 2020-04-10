@@ -9,8 +9,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using hazedumper;
+using AnimeSoftware.Hacks;
 using Opulos;
 using Opulos.Core.UI;
+using AnimeSoftware.Objects;
+using AnimeSoftware.Injections;
 
 namespace AnimeSoftware
 {
@@ -26,7 +29,7 @@ namespace AnimeSoftware
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
 
             while (!Init())
             {
@@ -48,7 +51,7 @@ namespace AnimeSoftware
             Properties.Settings.Default.namestealer = false;
             Properties.Settings.Default.Save();
             Start();
-            
+
         }
 
 
@@ -88,14 +91,14 @@ namespace AnimeSoftware
                 Priority = ThreadPriority.Highest,
                 IsBackground = true,
             };
-                namestealerThread.Start();
+            namestealerThread.Start();
 
-            Thread perfectnameThread = new Thread(new ThreadStart(PerfectNade.Start))
+            Thread perfectnadeThread = new Thread(new ThreadStart(PerfectNade.Start))
             {
                 Priority = ThreadPriority.Highest,
                 IsBackground = true,
             };
-            perfectnameThread.Start();
+            perfectnadeThread.Start();
 
             //Thread runboostThread = new Thread(new ThreadStart(RunboostBot.Start))
             //{
@@ -150,7 +153,7 @@ namespace AnimeSoftware
         public static bool Init()
         {
             Checks.CheckVersion();
-            if(Properties.Settings.Default.debug)
+            if (Properties.Settings.Default.debug)
                 Console.WriteLine("Update checked...");
             if (!Memory.OpenProcess("csgo"))
                 return false;
@@ -238,16 +241,18 @@ namespace AnimeSoftware
             rscCheckBox.Checked = Properties.Settings.Default.rsc;
             ffCheckBox.Checked = Properties.Settings.Default.friendlyfire;
             perfectnadeCheckBox.Checked = Properties.Settings.Default.perfectnade;
-            fovTrackBar.Value = (int)(Properties.Settings.Default.fov*100);
+            fovTrackBar.Value = (int)(Properties.Settings.Default.fov * 100);
             fovLabel.Text = Properties.Settings.Default.fov.ToString();
             smoothTrackBar.Value = (int)(Properties.Settings.Default.smooth * 100);
             smoothLabel.Text = Properties.Settings.Default.smooth.ToString();
             chokeTrackBar.Value = Properties.Settings.Default.bhopChoke;
-            if(Properties.Settings.Default.unlock)
+            Properties.Settings.Default.velName = false;
+            Properties.Settings.Default.Save();
+            if (Properties.Settings.Default.unlock)
                 this.Width += 145;
             foreach (string x in Structs.Hitbox.Values)
                 hitboxComboBox.Items.Add(x);
-            if(Properties.Settings.Default.boneid!=0)
+            if (Properties.Settings.Default.boneid != 0)
                 hitboxComboBox.SelectedItem = Structs.Hitbox[Properties.Settings.Default.boneid];
         }
         public void InitHotkey()
@@ -280,7 +285,7 @@ namespace AnimeSoftware
         {
             Properties.Settings.Default.namestealer = namestealerCheckBox.Checked;
             Properties.Settings.Default.Save();
-            
+
         }
         private void autostrafeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -505,7 +510,7 @@ namespace AnimeSoftware
         {
             if (customnameTextBox.Text == "for some reason I needed extra functions that this cheat does not imply" || customnameTextBox.Text == "sagiri best girl")
             {
-                if(!Properties.Settings.Default.unlock)
+                if (!Properties.Settings.Default.unlock)
                     this.Width += 145;
                 Properties.Settings.Default.unlock = true;
                 Properties.Settings.Default.Save();
@@ -517,7 +522,7 @@ namespace AnimeSoftware
                 Properties.Settings.Default.unlock = false;
                 Properties.Settings.Default.Save();
             }
-                
+
         }
 
         private void perfectnadeCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -545,90 +550,38 @@ namespace AnimeSoftware
             Properties.Settings.Default.Save();
         }
 
+        private void clantagCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.clanTag = clantagCheckBox.Checked;
+            if (Properties.Settings.Default.clanTag)
+            {
+                Thread clantagThread = new Thread(new ThreadStart(ClanTag.Default))
+                {
+                    Priority = ThreadPriority.Highest,
+                    IsBackground = true,
+                };
+                clantagThread.Start();
+            }
+        }
 
+        private void velCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.velTag = velCheckBox.Checked;
+            if (Properties.Settings.Default.velTag)
+            {
+                Thread veltagThread = new Thread(new ThreadStart(ClanTag.VelTag))
+                {
+                    Priority = ThreadPriority.Highest,
+                    IsBackground = true,
+                };
+                veltagThread.Start();
+            }
+        }
 
-
-
-
-
-        //    public static byte[] Shellcode = {
-        //                    0x55,
-        //                    0x8B, 0xEC,
-        //                    0x83, 0xE4, 0xF8,
-        //                    0x83, 0xEC, 0x44,
-        //                    0x53,
-        //                    0x56,
-        //                    0x57,
-        //                    0xBF, 0x00, 0x00, 0x00, 0x00,
-        //                    0xBE, 0x00, 0x00, 0x00, 0x00,
-        //                    0xB8, 0x00, 0x00, 0x00, 0x00,
-        //                    0xFF, 0xE0,
-        //                    0x6E, 0x61, 0x6D, 0x65, 0x00,
-        //                    0x00
-        //                };
-
-        //    public static int Size = Shellcode.Length;
-        //    public static IntPtr Address;
-        //    private void button1_Click_1(object sender, EventArgs e)
-        //    {
-        //        string name = "\n\xAD\xAD\xAD";
-        //        Allocator alloc = new Allocator();
-
-        //        if (Address == IntPtr.Zero)
-        //        {
-        //            Address = alloc.Alloc(Size);
-
-        //            if (Address == IntPtr.Zero)
-        //                return;
-
-        //            Buffer.BlockCopy(BitConverter.GetBytes((int)Address + 0x1D), 0, Shellcode, 0xD, 4);
-        //            Buffer.BlockCopy(BitConverter.GetBytes((int)Address + 0x22), 0, Shellcode, 0x12, 4);
-        //            Buffer.BlockCopy(BitConverter.GetBytes(Memory.Engine + ScannedOffsets.SetConVar), 0, Shellcode, 0x17, 4);
-
-        //        }
-
-        //        if (!LocalPlayer.InGame) return;
-
-        //        byte[] reset = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-
-        //        byte[] name_bytes;
-        //        if (name == "\n")
-        //        {
-        //            name_bytes = Encoding.UTF8.GetBytes('\n' + "\0");
-        //        }
-        //        else
-        //        {
-        //            name_bytes = Encoding.UTF8.GetBytes(name + "\0");
-        //        }
-
-        //        //Buffer.BlockCopy(reset, 0, Shellcode, 0x22, reset.Length);
-        //        //Buffer.BlockCopy(name_bytes, 0, Shellcode, 0x22, name_bytes.Length);
-        //        Memory.WriteProcessMemory(Memory.pHandle, Address, Shellcode, Shellcode.Length, 0);
-
-        //        for (int i = 0; i < 1000; i++)
-        //        {
-        //            CreateThread.Execute(Address);
-        //            Thread.Sleep(1);
-        //        }
-
-        //    }
-
-        //}
-        //public static class CreateThread
-        //{
-        //    public static void Create(IntPtr address, byte[] shellcode)
-        //    {
-        //        Memory.WriteProcessMemory(Memory.pHandle, address, shellcode, shellcode.Length, 0);
-        //        IntPtr _Thread = DllImport.CreateRemoteThread(Memory.pHandle, (IntPtr)null, IntPtr.Zero, address, (IntPtr)null, 0, (IntPtr)null);
-        //        DllImport.WaitForSingleObject(_Thread, 0xFFFFFFFF);
-        //        DllImport.CloseHandle(_Thread);
-        //    }
-
-        //    public static void Execute(IntPtr address)
-        //    {
-        //        IntPtr _Thread = DllImport.CreateRemoteThread(Memory.pHandle, (IntPtr)null, IntPtr.Zero, address, (IntPtr)null, 0, (IntPtr)null);
-        //        DllImport.WaitForSingleObject(_Thread, 0xFFFFFFFF);
-        //        DllImport.CloseHandle(_Thread);
-        //    }
+        private void velnameCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.velName = velnameCheckBox.Checked;
+            Properties.Settings.Default.Save();
+        }
     }
 }

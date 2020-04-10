@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using hazedumper;
 
-namespace AnimeSoftware
+namespace AnimeSoftware.Objects
 {
     class Entity : IDisposable
     {

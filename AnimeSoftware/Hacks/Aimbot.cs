@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Threading;
+using AnimeSoftware.Injections;
+using AnimeSoftware.Objects;
 
-namespace AnimeSoftware
+namespace AnimeSoftware.Hacks
 {
     class Aimbot
     {
