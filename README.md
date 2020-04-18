@@ -17,17 +17,18 @@ I recommend using this hack in conjunction with some kind of internal hack that 
 - BHop
 - AutoSrafe
 - NickName changer with separate window.
-- NameStealer (don't use without removing the cooldown through the internal hack)
+- NameStealer (name exploit needed)
 - Targeted Glow by nickname.
 - WeaponSpammer (sound of switching mode on glock/famas; scoping; r8 prepare)
 - FakeFF (change nickname, when you aiming to teammates for fakename damage message. [showcase](https://gph.is/g/Zyzj6qW "showcase"))
 - 98 Nade (if you are without armor, look up, hold down the right mouse button and you will inflict 98 damage from a nade)
 - ChatBreaker
-- Clantag from internal private version.
+- Clantag from internal private version and custom clantag.
 - VelocityTag (show your velocity in clantag)
+- MaxVelocityName (name exploit needed)
 
 ### Screenshots 
-[Main](https://ibb.co/KDvv4H4 "Main")  
+[Main](https://ibb.co/2czry47 "Main")  
 [Targeted Glow](https://ibb.co/1T1MjTc "Targeted Glow")  
 
 ### TODO
