@@ -272,7 +272,7 @@
             // autostrafeCheckBox
             // 
             this.autostrafeCheckBox.AutoSize = true;
-            this.autostrafeCheckBox.Location = new System.Drawing.Point(335, 100);
+            this.autostrafeCheckBox.Location = new System.Drawing.Point(351, 100);
             this.autostrafeCheckBox.Name = "autostrafeCheckBox";
             this.autostrafeCheckBox.Size = new System.Drawing.Size(76, 17);
             this.autostrafeCheckBox.TabIndex = 26;

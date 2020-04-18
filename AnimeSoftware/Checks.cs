@@ -40,7 +40,7 @@ namespace AnimeSoftware
 
         public static void CheckVersion()
         {
-            string url = "https://raw.githubusercontent.com/sagirilover/AnimeSoftware/master/version"; // only for fix critical bugs
+            string url = "https://raw.githubusercontent.com/sagirilover/AnimeSoftware/master/version"; // check for updates
             using (WebClient client = new WebClient())
             {
                 string s = client.DownloadString(url);
@@ -54,7 +54,7 @@ namespace AnimeSoftware
             }
         }
 
-        public static string version = "v2.60";
+        public static string version = "v2.70";
         
     }
 }
