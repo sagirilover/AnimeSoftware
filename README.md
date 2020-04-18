@@ -28,7 +28,7 @@ I recommend using this hack in conjunction with some kind of internal hack that 
 - MaxVelocityName (name exploit needed)
 
 ### Screenshots 
-[Main](https://ibb.co/2czry47 "Main")  
+[Main](https://ibb.co/ZTh0DNQ "Main")  
 [Targeted Glow](https://ibb.co/1T1MjTc "Targeted Glow")  
 
 ### TODO
