@@ -79,6 +79,9 @@
             this.clantagCheckBox = new System.Windows.Forms.CheckBox();
             this.velCheckBox = new System.Windows.Forms.CheckBox();
             this.velnameCheckBox = new System.Windows.Forms.CheckBox();
+            this.clanTextBox = new System.Windows.Forms.TextBox();
+            this.clanButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nickBox)).BeginInit();
             this.nickBoxContextMenuStrip.SuspendLayout();
             this.trashControl.SuspendLayout();
@@ -126,6 +129,7 @@
             this.nickBox.Name = "nickBox";
             this.nickBox.ReadOnly = true;
             this.nickBox.RowHeadersVisible = false;
+            this.nickBox.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.nickBox.Size = new System.Drawing.Size(317, 317);
             this.nickBox.TabIndex = 10;
             this.nickBox.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.nickBox_CellClick);
@@ -184,7 +188,7 @@
             // doorspammerCheckBox
             // 
             this.doorspammerCheckBox.AutoSize = true;
-            this.doorspammerCheckBox.Location = new System.Drawing.Point(335, 303);
+            this.doorspammerCheckBox.Location = new System.Drawing.Point(335, 326);
             this.doorspammerCheckBox.Name = "doorspammerCheckBox";
             this.doorspammerCheckBox.Size = new System.Drawing.Size(93, 17);
             this.doorspammerCheckBox.TabIndex = 14;
@@ -195,7 +199,7 @@
             // blockbotCheckBox
             // 
             this.blockbotCheckBox.AutoSize = true;
-            this.blockbotCheckBox.Location = new System.Drawing.Point(335, 347);
+            this.blockbotCheckBox.Location = new System.Drawing.Point(335, 370);
             this.blockbotCheckBox.Name = "blockbotCheckBox";
             this.blockbotCheckBox.Size = new System.Drawing.Size(69, 17);
             this.blockbotCheckBox.TabIndex = 15;
@@ -205,7 +209,7 @@
             // 
             // doorspammerButton
             // 
-            this.doorspammerButton.Location = new System.Drawing.Point(335, 319);
+            this.doorspammerButton.Location = new System.Drawing.Point(335, 342);
             this.doorspammerButton.Name = "doorspammerButton";
             this.doorspammerButton.Size = new System.Drawing.Size(84, 23);
             this.doorspammerButton.TabIndex = 17;
@@ -217,7 +221,7 @@
             // blockbotButton
             // 
             this.blockbotButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.blockbotButton.Location = new System.Drawing.Point(335, 363);
+            this.blockbotButton.Location = new System.Drawing.Point(335, 386);
             this.blockbotButton.Name = "blockbotButton";
             this.blockbotButton.Size = new System.Drawing.Size(84, 23);
             this.blockbotButton.TabIndex = 18;
@@ -504,7 +508,7 @@
             // 
             // unlockButton
             // 
-            this.unlockButton.Location = new System.Drawing.Point(464, 380);
+            this.unlockButton.Location = new System.Drawing.Point(464, 399);
             this.unlockButton.Name = "unlockButton";
             this.unlockButton.Size = new System.Drawing.Size(10, 10);
             this.unlockButton.TabIndex = 31;
@@ -577,6 +581,7 @@
             // velnameCheckBox
             // 
             this.velnameCheckBox.AutoSize = true;
+            this.velnameCheckBox.Enabled = false;
             this.velnameCheckBox.Location = new System.Drawing.Point(351, 251);
             this.velnameCheckBox.Name = "velnameCheckBox";
             this.velnameCheckBox.Size = new System.Drawing.Size(111, 17);
@@ -585,11 +590,42 @@
             this.velnameCheckBox.UseVisualStyleBackColor = true;
             this.velnameCheckBox.CheckedChanged += new System.EventHandler(this.velnameCheckBox_CheckedChanged);
             // 
+            // clanTextBox
+            // 
+            this.clanTextBox.Location = new System.Drawing.Point(12, 389);
+            this.clanTextBox.Name = "clanTextBox";
+            this.clanTextBox.Size = new System.Drawing.Size(259, 20);
+            this.clanTextBox.TabIndex = 42;
+            this.clanTextBox.Text = "Cutsom clantag";
+            // 
+            // clanButton
+            // 
+            this.clanButton.Location = new System.Drawing.Point(277, 389);
+            this.clanButton.Name = "clanButton";
+            this.clanButton.Size = new System.Drawing.Size(52, 20);
+            this.clanButton.TabIndex = 43;
+            this.clanButton.Text = "Set";
+            this.clanButton.UseVisualStyleBackColor = true;
+            this.clanButton.Click += new System.EventHandler(this.clanButton_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(347, 283);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 44;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AnimeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 395);
+            this.ClientSize = new System.Drawing.Size(476, 414);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.clanButton);
+            this.Controls.Add(this.clanTextBox);
             this.Controls.Add(this.velnameCheckBox);
             this.Controls.Add(this.velCheckBox);
             this.Controls.Add(this.clantagCheckBox);
@@ -684,6 +720,9 @@
         private System.Windows.Forms.CheckBox clantagCheckBox;
         private System.Windows.Forms.CheckBox velCheckBox;
         private System.Windows.Forms.CheckBox velnameCheckBox;
+        private System.Windows.Forms.TextBox clanTextBox;
+        private System.Windows.Forms.Button clanButton;
+        private System.Windows.Forms.Button button1;
     }
 }
 

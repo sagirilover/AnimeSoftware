@@ -1,19 +1,14 @@
-﻿using System;
+﻿using AnimeSoftware.Hacks;
+using AnimeSoftware.Injections;
+using AnimeSoftware.Objects;
+using Opulos.Core.UI;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using hazedumper;
-using AnimeSoftware.Hacks;
-using Opulos;
-using Opulos.Core.UI;
-using AnimeSoftware.Objects;
-using AnimeSoftware.Injections;
 
 namespace AnimeSoftware
 {
@@ -283,6 +278,11 @@ namespace AnimeSoftware
 
         private void namestealerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (namestealerCheckBox.Checked)
+                if (MessageBox.Show("Make sure, that you forced infinity name switching exploit in your other cheat.\nIn other way close this window.") != DialogResult.Yes)
+                {
+                    namestealerCheckBox.Checked = false;
+                }
             Properties.Settings.Default.namestealer = namestealerCheckBox.Checked;
             Properties.Settings.Default.Save();
 
@@ -576,12 +576,35 @@ namespace AnimeSoftware
                 };
                 veltagThread.Start();
             }
+            velnameCheckBox.Enabled = velCheckBox.Checked;
         }
 
         private void velnameCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (velnameCheckBox.Checked)
+                if (MessageBox.Show("Make sure, that you forced infinity name switching exploit in your other cheat.\nIn other way close this window.") != DialogResult.Yes)
+                {
+                    velnameCheckBox.Checked = false;
+                }
             Properties.Settings.Default.velName = velnameCheckBox.Checked;
             Properties.Settings.Default.Save();
         }
+
+        private void clanButton_Click(object sender, EventArgs e)
+        {
+            ClanTag.Set(clanTextBox.Text);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            while (true)
+            {
+                Thread.Sleep(100);
+                Console.WriteLine(LocalPlayer.InGame);
+                Console.WriteLine(LocalPlayer.Health);
+            }
+        }
+
+
     }
 }

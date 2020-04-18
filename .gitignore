@@ -14,3 +14,7 @@ AnimeSoftware/bin/Debug/
 *.pdb
 
 AnimeSoftware/bin/Release/
+
+AnimeSoftware/obj/Debug/
+
+AnimeSoftware/obj/Release/

@@ -38,8 +38,22 @@ namespace AnimeSoftware.Hacks
         }
         public static void Default()
         {
+            bool lastState = false;
             while (Properties.Settings.Default.clanTag)
             {
+                if (!LocalPlayer.InGame)
+                {
+                    lastState = false;
+                    continue;
+                }
+
+                if (!lastState && LocalPlayer.Health == 100)
+                    lastState = true;
+
+                if (LocalPlayer.IsDead)
+                    if (!lastState)
+                        continue;
+
                 string clear = new string(' ', 15);
                 string clantag = "animesoftware  ";
                 string safetag = clear;
@@ -48,50 +62,75 @@ namespace AnimeSoftware.Hacks
 
                 for (int i = 0; i <= clantag.Length; i++)
                 {
+                    if (!Properties.Settings.Default.clanTag)
+                    {
+                        ClanTag.Set("");
+                        return;
+                    }
+                        
                     safetag = clear.Remove(0, i).Insert(0, clantag.Substring(0, i));
                     ClanTag.Set(safetag);
                     Thread.Sleep(delay);
                 }
-                Thread.Sleep(delay*2);
-                safetag = RandomGlitch(13);
-                ClanTag.Set(safetag);
-                Thread.Sleep(delay);
-                safetag = RandomGlitch(12);
-                ClanTag.Set(safetag);
-                Thread.Sleep(delay);
-                safetag = RandomGlitch(11);
-                ClanTag.Set(safetag);
-                Thread.Sleep(delay);
-                safetag = RandomGlitch(10);
-                ClanTag.Set(safetag);
-                Thread.Sleep(delay);
-                safetag = "sagirihook  ";
-                ClanTag.Set(safetag);
+
+                Thread.Sleep(delay * 2);
+
+                for (int i = 13; i >= 10; i--)
+                {
+                    if (!Properties.Settings.Default.clanTag)
+                    {
+                        ClanTag.Set("");
+                        return;
+                    }
+                    safetag = RandomGlitch(i);
+                    ClanTag.Set(safetag);
+                    Thread.Sleep(delay);
+                }
+
+                ClanTag.Set(safetag = "sagirihook  ");
                 Thread.Sleep(delay*2);
 
                 for (int i = 0; i <= clantag.Length; i++)
                 {
+                    if (!Properties.Settings.Default.clanTag)
+                    {
+                        ClanTag.Set("");
+                        return;
+                    }
                     safetag = safetag.Remove(safetag.Length - 1, 1).Insert(0, clear.Substring(0, 1));
                     ClanTag.Set(safetag);
                     Thread.Sleep(delay);
                 }
             }
-            ClanTag.Set(" ");
+            ClanTag.Set("");
         }
 
         public static void VelTag()
         {
             int old = 0;
             bool changed = false;
+            bool lastState = false;
             while (Properties.Settings.Default.velTag)
             {
                 Thread.Sleep(50);
-                if (LocalPlayer.IsDead)
+                if (!LocalPlayer.InGame)
                 {
-                    Set("velocity " + 0);
+                    lastState = false;
                     continue;
                 }
-                    
+
+                if (!lastState && LocalPlayer.Health == 100)if (LocalPlayer.IsDead)
+                    if (lastState)
+                    {
+                        Set("velocity 0");
+                        continue;
+                    }
+                    else
+                        continue;
+                    lastState = true;
+
+                
+                     
                 int vel = (int)Math.Floor(LocalPlayer.Speed);
                 Set("velocity " + vel.ToString());
                 if (vel > old)
