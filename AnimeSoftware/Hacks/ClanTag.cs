@@ -107,7 +107,7 @@ namespace AnimeSoftware.Hacks
 
         public static void VelTag()
         {
-            int old = 0;
+            int old = 2;
             bool changed = false;
             bool lastState = false;
             while (Properties.Settings.Default.velTag)
@@ -138,11 +138,11 @@ namespace AnimeSoftware.Hacks
                     old = vel;
                     changed = true;
                 }  
-                if (vel == 0 && changed && Properties.Settings.Default.velName)
+                if ((vel == 0 || vel == 2) && changed && Properties.Settings.Default.velName)
                 {
                     ConVarManager.ChangeName("max " + old.ToString());
                     changed = false;
-                    old = 0;
+                    old = 2;
                 }
             }
             ClanTag.Set(" ");

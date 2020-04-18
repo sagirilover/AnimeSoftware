@@ -279,7 +279,7 @@ namespace AnimeSoftware
         private void namestealerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (namestealerCheckBox.Checked)
-                if (MessageBox.Show("Make sure, that you forced infinity name switching exploit in your other cheat.\nIn other way close this window.") != DialogResult.Yes)
+                if (MessageBox.Show("Make sure, that you forced infinity name switching exploit in your other cheat.\nIn other way close this window.") != DialogResult.OK)
                 {
                     namestealerCheckBox.Checked = false;
                 }
@@ -582,7 +582,7 @@ namespace AnimeSoftware
         private void velnameCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (velnameCheckBox.Checked)
-                if (MessageBox.Show("Make sure, that you forced infinity name switching exploit in your other cheat.\nIn other way close this window.") != DialogResult.Yes)
+                if (MessageBox.Show("Make sure, that you forced infinity name switching exploit in your other cheat.\nIn other way close this window.") != DialogResult.OK)
                 {
                     velnameCheckBox.Checked = false;
                 }
