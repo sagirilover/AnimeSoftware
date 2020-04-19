@@ -12,7 +12,7 @@ I recommend using this hack in conjunction with some kind of internal hack that 
 
 ### Features
 - BlockBot. (include runboost bot from old version. [showcase1](https://www.youtube.com/watch?v=mLDMrwj9PPE "showcase1") [showcase2](https://www.youtube.com/watch?v=ODWALQlLVbY "showcase2"))
-- Door spammer.a
+- Door spammer.
 - ClientCMD class.
 - BHop
 - AutoSrafe
@@ -32,5 +32,4 @@ I recommend using this hack in conjunction with some kind of internal hack that 
 [Targeted Glow](https://ibb.co/1T1MjTc "Targeted Glow")  
 
 ### TODO
-- ClanTag changer.
-- UserCMD class.
+- da
