@@ -20,5 +20,17 @@ namespace AnimeSoftware.Hacks
                 ClientCMD.Exec("say \"﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽﷽ ﷽﷽\"");
             }
         }
+        public static void RceMem()
+        {
+            Random rnd = new Random();
+            while (Properties.Settings.Default.chatcleaner)
+            {
+                Thread.Sleep(100);
+
+                string mem = String.Format("{0}:{1}:{2}:{3}:{4}:{5}:{6}:{7} pwned 0_o", rnd.Next(100), rnd.Next(100), rnd.Next(100), rnd.Next(100), rnd.Next(100), rnd.Next(100), rnd.Next(100), rnd.Next(100));
+
+                ClientCMD.Exec("say \""+mem+"\"");
+            }
+        }
     }
 }

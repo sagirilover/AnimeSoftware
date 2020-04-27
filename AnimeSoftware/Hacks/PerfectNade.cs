@@ -28,7 +28,7 @@ namespace AnimeSoftware.Hacks
                     continue;
                 if (LocalPlayer.ActiveWeapon != 44)
                     continue;
-                if (LocalPlayer.Speed != 0)
+                if (LocalPlayer.Speed > 3)
                     continue;
                 if ((DllImport.GetAsyncKeyState(0x02) & 0x8000) != 0)
                 {

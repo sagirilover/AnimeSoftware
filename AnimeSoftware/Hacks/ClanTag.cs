@@ -119,7 +119,9 @@ namespace AnimeSoftware.Hacks
                     continue;
                 }
 
-                if (!lastState && LocalPlayer.Health == 100)if (LocalPlayer.IsDead)
+                if (!lastState && LocalPlayer.Health == 100)
+                    lastState = true;
+                if (LocalPlayer.IsDead)
                     if (lastState)
                     {
                         Set("velocity 0");
@@ -127,9 +129,7 @@ namespace AnimeSoftware.Hacks
                     }
                     else
                         continue;
-                    lastState = true;
 
-                
                      
                 int vel = (int)Math.Floor(LocalPlayer.Speed);
                 Set("velocity " + vel.ToString());

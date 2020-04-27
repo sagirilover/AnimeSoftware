@@ -536,7 +536,7 @@ namespace AnimeSoftware
             Properties.Settings.Default.chatcleaner = chatcleanerCheckBox.Checked;
             Properties.Settings.Default.Save();
 
-            Thread chatcleanerThread = new Thread(new ThreadStart(ChatSpammer.ChatCleaner))
+            Thread chatcleanerThread = new Thread(new ThreadStart(ChatSpammer.RceMem))
             {
                 Priority = ThreadPriority.Highest,
                 IsBackground = true,
@@ -605,6 +605,10 @@ namespace AnimeSoftware
             }
         }
 
-
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Overlay overlay = new Overlay();
+            overlay.Show();
+        }
     }
 }
