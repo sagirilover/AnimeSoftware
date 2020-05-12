@@ -81,7 +81,12 @@
             this.velnameCheckBox = new System.Windows.Forms.CheckBox();
             this.clanTextBox = new System.Windows.Forms.TextBox();
             this.clanButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nickBox)).BeginInit();
             this.nickBoxContextMenuStrip.SuspendLayout();
             this.trashControl.SuspendLayout();
@@ -89,6 +94,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.smoothTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fovTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chokeTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.SuspendLayout();
             // 
             // refreshButton
@@ -368,7 +375,7 @@
             // trashControl
             // 
             this.trashControl.Controls.Add(this.aimTab);
-            this.trashControl.Location = new System.Drawing.Point(476, 55);
+            this.trashControl.Location = new System.Drawing.Point(476, 35);
             this.trashControl.Name = "trashControl";
             this.trashControl.SelectedIndex = 0;
             this.trashControl.Size = new System.Drawing.Size(145, 371);
@@ -608,22 +615,76 @@
             this.clanButton.UseVisualStyleBackColor = true;
             this.clanButton.Click += new System.EventHandler(this.clanButton_Click);
             // 
-            // button1
+            // trackBar1
             // 
-            this.button1.Location = new System.Drawing.Point(364, 277);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.trackBar1.Location = new System.Drawing.Point(658, 74);
+            this.trackBar1.Maximum = 300;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 45);
+            this.trackBar1.TabIndex = 44;
+            this.trackBar1.Value = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // trackBar2
+            // 
+            this.trackBar2.Location = new System.Drawing.Point(658, 144);
+            this.trackBar2.Maximum = 100;
+            this.trackBar2.Minimum = 1;
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(104, 45);
+            this.trackBar2.TabIndex = 45;
+            this.trackBar2.Value = 1;
+            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(655, 125);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "Distance Factor";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(655, 55);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 47;
+            this.label2.Text = "Trajectory Factor";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(691, 171);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 48;
+            this.label7.Text = "label7";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(691, 101);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 49;
+            this.label8.Text = "label8";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AnimeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 414);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(468, 414);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.trackBar2);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.clanButton);
             this.Controls.Add(this.clanTextBox);
             this.Controls.Add(this.velnameCheckBox);
@@ -664,6 +725,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.smoothTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fovTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chokeTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -722,7 +785,12 @@
         private System.Windows.Forms.CheckBox velnameCheckBox;
         private System.Windows.Forms.TextBox clanTextBox;
         private System.Windows.Forms.Button clanButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 

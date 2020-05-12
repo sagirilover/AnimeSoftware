@@ -136,6 +136,12 @@ namespace AnimeSoftware
             return GetStructure<T>(buffer);
         }
 
+        public static void WriteBytes(Int32 address, byte[] value)
+        {
+            UInt32 nBytesRead = UInt32.MinValue;
+            WriteProcessMemory(pHandle, (IntPtr)address, value, (IntPtr)value.Length, ref nBytesRead);
+        }
+
         public static void Write<T>(Int32 address, T value)
         {
             int length = Marshal.SizeOf(typeof(T));

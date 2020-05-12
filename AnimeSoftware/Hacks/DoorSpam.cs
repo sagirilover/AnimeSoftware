@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AnimeSoftware.Hacks
 {
@@ -26,12 +27,13 @@ namespace AnimeSoftware.Hacks
 
                 while ((DllImport.GetAsyncKeyState(Properties.Hotkey.Default.doorspammerKey) & 0x8000) != 0)
                 {
-                    ClientCMD.Exec("+use");  // I did not add this to LocalPlayer to avoid delay. But i dont try, maybe this will not happen lol
-                    Thread.Sleep(15);
-                    ClientCMD.Exec("-use");
-                    Thread.Sleep(15);
+
+                    LocalPlayer.Use = 5;
+                    Thread.Sleep(13);
+                    LocalPlayer.Use = 4;
+                    Thread.Sleep(13);
                 }
-                
+
             }
         }
     }

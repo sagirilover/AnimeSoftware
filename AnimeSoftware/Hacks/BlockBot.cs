@@ -15,6 +15,10 @@ namespace AnimeSoftware.Hacks
         public static bool blocking = false;
         public static bool bb = false;
         public static bool hb = false;
+        public static float distanceFactor = 1.5f;
+        public static float trajFactor = 0.3f;
+        
+
         public static void Start()
         {
             while (true)
@@ -53,7 +57,7 @@ namespace AnimeSoftware.Hacks
                             bb = false;
                         }
 
-                        hb = true; 
+                        hb = true;
 
                         if (target.Speed == 0 && (LocalPlayer.Position - target.ViewPosition).Length < 10)
                         {
@@ -62,6 +66,7 @@ namespace AnimeSoftware.Hacks
                         }
 
                         LocalPlayer.ViewAngleY = Aimbot.NormalizedAngle(Aimbot.CalcAngle(LocalPlayer.ViewPosition, target.Position)).y;
+
 
                         LocalPlayer.MoveForward();
 
@@ -93,7 +98,7 @@ namespace AnimeSoftware.Hacks
                         }
                     }
 
-                    
+
                 }
                 if (blocking || hb || bb)
                 {

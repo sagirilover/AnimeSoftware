@@ -117,12 +117,6 @@ namespace AnimeSoftware.Objects
         {
             ClientCMD.Exec("-forward");
         }
-        public static void Use()
-        {
-            Memory.Write<int>(Memory.Client + ScannedOffsets.dwUse, 5);
-            Thread.Sleep(20);
-            Memory.Write<int>(Memory.Client + ScannedOffsets.dwUse, 4);
-        }
         public static void Jump()
         {
             Memory.Write<int>(Memory.Client + signatures.dwForceJump, 5);
@@ -166,6 +160,13 @@ namespace AnimeSoftware.Objects
                 return info;
             }
         }
+        public static int Use
+        {
+            set
+            {
+                Memory.Write<int>(Memory.Read<int>(Memory.Client + ScannedOffsets.dwUse), value);
+            }
+        }
         public static bool InGame
         {
             get
@@ -175,6 +176,7 @@ namespace AnimeSoftware.Objects
             }
         }
 
+        
         public static int CrossHair
         {
             get
