@@ -1,6 +1,7 @@
 ﻿using AnimeSoftware.Hacks;
 using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
+using hazedumper;
 using Opulos.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,11 @@ namespace AnimeSoftware
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            trackBar1.Value = (int)(BlockBot.trajFactor * 100);
+            label8.Text = BlockBot.trajFactor.ToString();
 
+            trackBar2.Value = (int)(BlockBot.distanceFactor * 10);
+            label7.Text = BlockBot.distanceFactor.ToString();
 
             while (!Init())
             {
@@ -595,20 +600,25 @@ namespace AnimeSoftware
             ClanTag.Set(clanTextBox.Text);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            while (true)
-            {
-                Thread.Sleep(100);
-                Console.WriteLine(LocalPlayer.InGame);
-                Console.WriteLine(LocalPlayer.Health);
-            }
+            label8.Text = (trackBar1.Value / 100f).ToString();
+            BlockBot.trajFactor = trackBar1.Value / 100f;
+            Console.WriteLine(BlockBot.trajFactor);
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void trackBar2_Scroll(object sender, EventArgs e)
         {
-            Overlay overlay = new Overlay();
-            overlay.Show();
+            label7.Text = (trackBar2.Value / 10f).ToString();
+            BlockBot.distanceFactor = trackBar2.Value / 10f;
+            Console.WriteLine(BlockBot.distanceFactor);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LocalPlayer.Use = 6;
         }
     }
 }
