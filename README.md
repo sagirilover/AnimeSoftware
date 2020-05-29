@@ -11,16 +11,16 @@ I recommend using this hack in conjunction with some kind of internal hack that 
   
 
 ### Features
-- BlockBot. (include runboost bot from old version. [showcase1](https://www.youtube.com/watch?v=mLDMrwj9PPE "showcase1") [showcase2](https://www.youtube.com/watch?v=ODWALQlLVbY "showcase2"))
+- BlockBot. (includes runboost bot from old version. [showcase1](https://www.youtube.com/watch?v=mLDMrwj9PPE "showcase1") [showcase2](https://www.youtube.com/watch?v=ODWALQlLVbY "showcase2"))
 - Door spammer.
 - ClientCMD class.
 - BHop
-- AutoSrafe
+- AutoStrafe
 - NickName changer with separate window.
 - NameStealer (name exploit needed)
 - Targeted Glow by nickname.
 - WeaponSpammer (sound of switching mode on glock/famas; scoping; r8 prepare)
-- FakeFF (change nickname, when you aiming to teammates for fakename damage message. [showcase](https://gph.is/g/Zyzj6qW "showcase"))
+- FakeFF (change nickname, when you are aiming at teammates for fakename damage message. [showcase](https://gph.is/g/Zyzj6qW "showcase"))
 - 98 Nade (if you are without armor, look up, hold down the right mouse button and you will inflict 98 damage from a nade)
 - ChatBreaker
 - Clantag from internal private version and custom clantag.
