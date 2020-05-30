@@ -773,6 +773,7 @@
             this.Controls.Add(this.refreshButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.MaximizeBox = false;
             this.Name = "AnimeForm";
             this.Text = "AnimeSoftware";
             this.Load += new System.EventHandler(this.Form1_Load);

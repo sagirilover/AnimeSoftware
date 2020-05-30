@@ -15,8 +15,8 @@ namespace AnimeSoftware.Hacks
         public static bool blocking = false;
         public static bool bb = false;
         public static bool hb = false;
-        public static float distanceFactor = 1.5f;
-        public static float trajFactor = 0.3f;
+        public static float distanceFactor = 2f;
+        public static float trajFactor = 0.45f;
 
         public static void Start2()
         {
@@ -47,8 +47,6 @@ namespace AnimeSoftware.Hacks
                         blocked = true;
                     }
 
-     
-
                     if ((LocalPlayer.Position - target.BonePosition(8)).Length < 43)
                     {
 
@@ -64,10 +62,10 @@ namespace AnimeSoftware.Hacks
                         if (distance > 10)
                             distance = 10;
 
-                        float pokekat = LocalPlayer.ViewAngle.y - Aimbot.CalcAngle(LocalPlayer.Position, target.Position).y + 360.0f;
+                        float angle = LocalPlayer.ViewAngle.y - Aimbot.CalcAngle(LocalPlayer.Position, target.Position).y + 360.0f;
 
-                        LocalPlayer.SideSpeed = (float)Math.Sin(pokekat * 0.0174533) * 45 * distance;
-                        LocalPlayer.ForwardSpeed = (float)Math.Cos(pokekat * 0.0174533) * 45 * distance;
+                        LocalPlayer.SideSpeed = (float)Math.Sin(angle * 0.0174533) * 45 * distance;
+                        LocalPlayer.ForwardSpeed = (float)Math.Cos(angle * 0.0174533) * 45 * distance;
 
                     }
                     else
