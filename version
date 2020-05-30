@@ -1,6 +1,4 @@
-v2.80
+v3.00
 
-fix veltag and clantag
-add custom clantag
-wpf fix
-wpf FIX
+reworked onhead blockbot
+added viewmodel settings
