@@ -57,6 +57,7 @@
             this.removeGlowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.voteKickToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stealWhenYouFriendlyfireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getByteNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rightspamButton = new System.Windows.Forms.CheckBox();
             this.trashControl = new System.Windows.Forms.TabControl();
             this.aimTab = new System.Windows.Forms.TabPage();
@@ -87,6 +88,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
+            this.trackBar4 = new System.Windows.Forms.TrackBar();
+            this.trackBar5 = new System.Windows.Forms.TrackBar();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nickBox)).BeginInit();
             this.nickBoxContextMenuStrip.SuspendLayout();
             this.trashControl.SuspendLayout();
@@ -96,11 +101,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.chokeTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).BeginInit();
             this.SuspendLayout();
             // 
             // refreshButton
             // 
-            this.refreshButton.Location = new System.Drawing.Point(173, 335);
+            this.refreshButton.Location = new System.Drawing.Point(173, 412);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 26);
             this.refreshButton.TabIndex = 2;
@@ -111,7 +119,7 @@
             // changeButton
             // 
             this.changeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.changeButton.Location = new System.Drawing.Point(12, 335);
+            this.changeButton.Location = new System.Drawing.Point(12, 412);
             this.changeButton.Name = "changeButton";
             this.changeButton.Size = new System.Drawing.Size(75, 26);
             this.changeButton.TabIndex = 5;
@@ -137,7 +145,7 @@
             this.nickBox.ReadOnly = true;
             this.nickBox.RowHeadersVisible = false;
             this.nickBox.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.nickBox.Size = new System.Drawing.Size(317, 317);
+            this.nickBox.Size = new System.Drawing.Size(317, 390);
             this.nickBox.TabIndex = 10;
             this.nickBox.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.nickBox_CellClick);
             this.nickBox.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.nickBox_CellMouseUp);
@@ -173,7 +181,7 @@
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(93, 335);
+            this.resetButton.Location = new System.Drawing.Point(93, 412);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 26);
             this.resetButton.TabIndex = 11;
@@ -195,7 +203,7 @@
             // doorspammerCheckBox
             // 
             this.doorspammerCheckBox.AutoSize = true;
-            this.doorspammerCheckBox.Location = new System.Drawing.Point(335, 326);
+            this.doorspammerCheckBox.Location = new System.Drawing.Point(481, 12);
             this.doorspammerCheckBox.Name = "doorspammerCheckBox";
             this.doorspammerCheckBox.Size = new System.Drawing.Size(93, 17);
             this.doorspammerCheckBox.TabIndex = 14;
@@ -206,7 +214,7 @@
             // blockbotCheckBox
             // 
             this.blockbotCheckBox.AutoSize = true;
-            this.blockbotCheckBox.Location = new System.Drawing.Point(335, 370);
+            this.blockbotCheckBox.Location = new System.Drawing.Point(481, 57);
             this.blockbotCheckBox.Name = "blockbotCheckBox";
             this.blockbotCheckBox.Size = new System.Drawing.Size(69, 17);
             this.blockbotCheckBox.TabIndex = 15;
@@ -216,7 +224,7 @@
             // 
             // doorspammerButton
             // 
-            this.doorspammerButton.Location = new System.Drawing.Point(335, 342);
+            this.doorspammerButton.Location = new System.Drawing.Point(481, 28);
             this.doorspammerButton.Name = "doorspammerButton";
             this.doorspammerButton.Size = new System.Drawing.Size(84, 23);
             this.doorspammerButton.TabIndex = 17;
@@ -228,7 +236,7 @@
             // blockbotButton
             // 
             this.blockbotButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.blockbotButton.Location = new System.Drawing.Point(335, 386);
+            this.blockbotButton.Location = new System.Drawing.Point(481, 73);
             this.blockbotButton.Name = "blockbotButton";
             this.blockbotButton.Size = new System.Drawing.Size(84, 23);
             this.blockbotButton.TabIndex = 18;
@@ -239,7 +247,7 @@
             // 
             // fullrefreshButton
             // 
-            this.fullrefreshButton.Location = new System.Drawing.Point(254, 335);
+            this.fullrefreshButton.Location = new System.Drawing.Point(254, 412);
             this.fullrefreshButton.Name = "fullrefreshButton";
             this.fullrefreshButton.Size = new System.Drawing.Size(75, 26);
             this.fullrefreshButton.TabIndex = 19;
@@ -260,7 +268,7 @@
             // 
             // customnameTextBox
             // 
-            this.customnameTextBox.Location = new System.Drawing.Point(12, 367);
+            this.customnameTextBox.Location = new System.Drawing.Point(12, 444);
             this.customnameTextBox.Name = "customnameTextBox";
             this.customnameTextBox.Size = new System.Drawing.Size(259, 20);
             this.customnameTextBox.TabIndex = 21;
@@ -268,7 +276,7 @@
             // 
             // setupButton
             // 
-            this.setupButton.Location = new System.Drawing.Point(277, 367);
+            this.setupButton.Location = new System.Drawing.Point(277, 444);
             this.setupButton.Name = "setupButton";
             this.setupButton.Size = new System.Drawing.Size(52, 20);
             this.setupButton.TabIndex = 22;
@@ -294,9 +302,11 @@
             this.setGlowToolStripMenuItem,
             this.removeGlowToolStripMenuItem,
             this.voteKickToolStripMenuItem,
-            this.stealWhenYouFriendlyfireToolStripMenuItem});
+            this.stealWhenYouFriendlyfireToolStripMenuItem,
+            this.getByteNameToolStripMenuItem});
             this.nickBoxContextMenuStrip.Name = "nickBoxContextMenuStrip";
-            this.nickBoxContextMenuStrip.Size = new System.Drawing.Size(215, 114);
+            this.nickBoxContextMenuStrip.Size = new System.Drawing.Size(215, 136);
+            this.nickBoxContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.nickBoxContextMenuStrip_Opening);
             this.nickBoxContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.nickBoxContextMenuStrip_ItemClicked);
             // 
             // stealNameToolStripMenuItem
@@ -360,6 +370,13 @@
             this.stealWhenYouFriendlyfireToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.stealWhenYouFriendlyfireToolStripMenuItem.Text = "Steal when you friendlyfire";
             // 
+            // getByteNameToolStripMenuItem
+            // 
+            this.getByteNameToolStripMenuItem.Name = "getByteNameToolStripMenuItem";
+            this.getByteNameToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.getByteNameToolStripMenuItem.Text = "Get byte name";
+            this.getByteNameToolStripMenuItem.Click += new System.EventHandler(this.getByteNameToolStripMenuItem_Click);
+            // 
             // rightspamButton
             // 
             this.rightspamButton.AutoSize = true;
@@ -375,7 +392,7 @@
             // trashControl
             // 
             this.trashControl.Controls.Add(this.aimTab);
-            this.trashControl.Location = new System.Drawing.Point(476, 35);
+            this.trashControl.Location = new System.Drawing.Point(591, 12);
             this.trashControl.Name = "trashControl";
             this.trashControl.SelectedIndex = 0;
             this.trashControl.Size = new System.Drawing.Size(145, 371);
@@ -515,7 +532,7 @@
             // 
             // unlockButton
             // 
-            this.unlockButton.Location = new System.Drawing.Point(464, 399);
+            this.unlockButton.Location = new System.Drawing.Point(575, 476);
             this.unlockButton.Name = "unlockButton";
             this.unlockButton.Size = new System.Drawing.Size(10, 10);
             this.unlockButton.TabIndex = 31;
@@ -599,7 +616,7 @@
             // 
             // clanTextBox
             // 
-            this.clanTextBox.Location = new System.Drawing.Point(12, 389);
+            this.clanTextBox.Location = new System.Drawing.Point(12, 466);
             this.clanTextBox.Name = "clanTextBox";
             this.clanTextBox.Size = new System.Drawing.Size(259, 20);
             this.clanTextBox.TabIndex = 42;
@@ -607,7 +624,7 @@
             // 
             // clanButton
             // 
-            this.clanButton.Location = new System.Drawing.Point(277, 389);
+            this.clanButton.Location = new System.Drawing.Point(277, 466);
             this.clanButton.Name = "clanButton";
             this.clanButton.Size = new System.Drawing.Size(52, 20);
             this.clanButton.TabIndex = 43;
@@ -617,7 +634,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(658, 74);
+            this.trackBar1.Location = new System.Drawing.Point(481, 120);
             this.trackBar1.Maximum = 300;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(104, 45);
@@ -627,7 +644,7 @@
             // 
             // trackBar2
             // 
-            this.trackBar2.Location = new System.Drawing.Point(658, 144);
+            this.trackBar2.Location = new System.Drawing.Point(481, 190);
             this.trackBar2.Maximum = 100;
             this.trackBar2.Minimum = 1;
             this.trackBar2.Name = "trackBar2";
@@ -639,7 +656,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(655, 125);
+            this.label1.Location = new System.Drawing.Point(478, 171);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 46;
@@ -648,7 +665,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(655, 55);
+            this.label2.Location = new System.Drawing.Point(478, 101);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 13);
             this.label2.TabIndex = 47;
@@ -657,7 +674,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(691, 171);
+            this.label7.Location = new System.Drawing.Point(514, 222);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 48;
@@ -667,18 +684,61 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(691, 101);
+            this.label8.Location = new System.Drawing.Point(514, 147);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 49;
             this.label8.Text = "label8";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // trackBar3
+            // 
+            this.trackBar3.Location = new System.Drawing.Point(481, 281);
+            this.trackBar3.Maximum = 2000;
+            this.trackBar3.Minimum = -2000;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.Size = new System.Drawing.Size(104, 45);
+            this.trackBar3.TabIndex = 50;
+            this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
+            // 
+            // trackBar4
+            // 
+            this.trackBar4.Location = new System.Drawing.Point(481, 332);
+            this.trackBar4.Maximum = 2000;
+            this.trackBar4.Minimum = -2000;
+            this.trackBar4.Name = "trackBar4";
+            this.trackBar4.Size = new System.Drawing.Size(104, 45);
+            this.trackBar4.TabIndex = 51;
+            this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
+            // 
+            // trackBar5
+            // 
+            this.trackBar5.Location = new System.Drawing.Point(481, 378);
+            this.trackBar5.Maximum = 2000;
+            this.trackBar5.Minimum = -2000;
+            this.trackBar5.Name = "trackBar5";
+            this.trackBar5.Size = new System.Drawing.Size(104, 45);
+            this.trackBar5.TabIndex = 52;
+            this.trackBar5.Scroll += new System.EventHandler(this.trackBar5_Scroll);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(478, 260);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(58, 13);
+            this.label9.TabIndex = 53;
+            this.label9.Text = "Viewmodel";
+            // 
             // AnimeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 414);
+            this.ClientSize = new System.Drawing.Size(592, 488);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.trackBar5);
+            this.Controls.Add(this.trackBar4);
+            this.Controls.Add(this.trackBar3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
@@ -727,6 +787,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.chokeTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -791,6 +854,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TrackBar trackBar3;
+        private System.Windows.Forms.TrackBar trackBar4;
+        private System.Windows.Forms.TrackBar trackBar5;
+        private System.Windows.Forms.ToolStripMenuItem getByteNameToolStripMenuItem;
+        private System.Windows.Forms.Label label9;
     }
 }
 

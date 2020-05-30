@@ -176,7 +176,45 @@ namespace AnimeSoftware.Objects
             }
         }
 
-        
+        public static float SideSpeed
+        {
+            set
+            {
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.cl_sidespeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_cl_sidespeed));
+            }
+        }
+
+        public static float ForwardSpeed
+        {
+            set
+            {
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.cl_forwardspeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_cl_forwardspeed));
+            }
+        }
+
+        public static float viewmodel_x
+        {
+            set
+            {
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.viewmodel_x), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_viewmodel_x));
+            }
+        }
+
+        public static float viewmodel_y
+        {
+            set
+            {
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.viewmodel_y), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_viewmodel_y));
+            }
+        }
+
+        public static float viewmodel_z
+        {
+            set
+            {
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.viewmodel_z), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_viewmodel_z));
+            }
+        }
         public static int CrossHair
         {
             get

@@ -49,6 +49,12 @@ namespace AnimeSoftware.Objects
         {
             get
             {
+                string s = "";
+                foreach(byte b in pInfo.m_szPlayerName)
+                {
+                    s += b.ToString("X") + " ";
+                }
+                Console.WriteLine(s);
                 return Encoding.UTF8.GetString(pInfo.m_szPlayerName);
             }
         }

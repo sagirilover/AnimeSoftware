@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -58,7 +59,7 @@ namespace AnimeSoftware
 
         public static void Start()
         {
-            Thread blockbotThread = new Thread(new ThreadStart(BlockBot.Start))
+            Thread blockbotThread = new Thread(new ThreadStart(BlockBot.Start2))
             {
                 Priority = ThreadPriority.Highest,
                 IsBackground = true,
@@ -99,13 +100,6 @@ namespace AnimeSoftware
                 IsBackground = true,
             };
             perfectnadeThread.Start();
-
-            //Thread runboostThread = new Thread(new ThreadStart(RunboostBot.Start))
-            //{
-            //    Priority = ThreadPriority.Highest,                                       // disabled
-            //    IsBackground = true,
-            //};
-            //runboostThread.Start();
 
             Thread visualsThread = new Thread(new ThreadStart(Visuals.Start))
             {
@@ -382,6 +376,10 @@ namespace AnimeSoftware
                 }
                 Visuals.ToGlow = ToGlow;
             }
+            if(e.ClickedItem == getByteNameToolStripMenuItem)
+            {
+                Console.WriteLine( new Entity(Convert.ToInt32(nickBox.SelectedRows[0].Cells[0].Value)).Name2);
+            }
         }
         private void toGlowListChange(GlowColor glowColor)
         {
@@ -606,19 +604,60 @@ namespace AnimeSoftware
         {
             label8.Text = (trackBar1.Value / 100f).ToString();
             BlockBot.trajFactor = trackBar1.Value / 100f;
-            Console.WriteLine(BlockBot.trajFactor);
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
             label7.Text = (trackBar2.Value / 10f).ToString();
             BlockBot.distanceFactor = trackBar2.Value / 10f;
-            Console.WriteLine(BlockBot.distanceFactor);
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+            LocalPlayer.viewmodel_x = trackBar3.Value / 100f;
+        }
+
+        private void trackBar4_Scroll(object sender, EventArgs e)
+        {
+            LocalPlayer.viewmodel_y = trackBar4.Value / 100f;
+        }
+
+        private void trackBar5_Scroll(object sender, EventArgs e)
+        {
+            LocalPlayer.viewmodel_z = trackBar5.Value / 100f;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LocalPlayer.Use = 6;
+            Color c = Color.Red;
+            Console.WriteLine(new byte[] { 255,0,0,255 }.ToString());
+            //Console.WriteLine($"R: {c.R} G: {c.G} B: {c.B} A: {c.A}");
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            Kek(Encoding.Default.GetBytes("\n\xAD\xAD\xAD"));
+            Kek(Encoding.UTF8.GetBytes("\n\xAD\xAD\xAD"));
+            Kek(Encoding.UTF8.GetBytes("\n\u00AD\u00AD\u00AD"));
+        }
+        public static void Kek(byte[] b) 
+        {
+            string s = "";
+            foreach(byte bt in b)
+            {
+                s += bt.ToString("X") + " ";
+            }
+            Console.WriteLine(s);
+        }
+
+        private void nickBoxContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void getByteNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

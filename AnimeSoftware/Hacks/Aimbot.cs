@@ -42,7 +42,7 @@ namespace AnimeSoftware.Hacks
         {
             Vector3 angles = new Vector3 { x = 0, y = 0, z = 0 };
             double[] delta = { (src.x - dst.x), (src.y - dst.y), (src.z - dst.z) };
-            float hyp = (float)Math.Sqrt(delta[0] * delta[0] + delta[1] * delta[1] + delta[2] * delta[2]);
+            float hyp = (float)Math.Sqrt(delta[0] * delta[0] + delta[1] * delta[1]);
             angles.x = (float)(Math.Atan(delta[2] / hyp) * 180.0f / Math.PI);
             angles.y = (float)(Math.Atan(delta[1] / delta[0]) * 180.0f / Math.PI);
             if (delta[0] >= 0.0f)
@@ -79,7 +79,8 @@ namespace AnimeSoftware.Hacks
                     Index = x.Index;
                 }
             }
-            return new Entity(Index);
+
+               return new Entity(Index);
         }
 
         public static Entity BestFOV(float FOV, int boneID = 6)
