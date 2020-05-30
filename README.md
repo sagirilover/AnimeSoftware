@@ -11,7 +11,7 @@ I recommend using this hack in conjunction with some kind of internal hack that 
   
 
 ### Features
-- BlockBot. (includes runboost bot from old version. [showcase1](https://www.youtube.com/watch?v=mLDMrwj9PPE "showcase1") [showcase2](https://www.youtube.com/watch?v=ODWALQlLVbY "showcase2"))
+- BlockBot. (includes runboost bot from old version. [showcase1](https://www.youtube.com/watch?v=-pw8PNrEU8Q "showcase1") [showcase2](https://www.youtube.com/watch?v=ODWALQlLVbY "showcase2"))
 - Door spammer.
 - ClientCMD class.
 - BHop
@@ -24,8 +24,9 @@ I recommend using this hack in conjunction with some kind of internal hack that 
 - 98 Nade (if you are without armor, look up, hold down the right mouse button and you will inflict 98 damage from a nade)
 - ChatBreaker
 - Clantag from internal private version and custom clantag.
-- VelocityTag (show your velocity in clantag)
-- MaxVelocityName (name exploit needed)
+- VelocityTag (show your velocity in clantag).
+- MaxVelocityName (name exploit needed).
+- Viewmodel offset changer.
 
 ### Screenshots 
 [Main](https://ibb.co/ZTh0DNQ "Main")  
