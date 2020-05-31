@@ -108,7 +108,7 @@
             // 
             // refreshButton
             // 
-            this.refreshButton.Location = new System.Drawing.Point(173, 412);
+            this.refreshButton.Location = new System.Drawing.Point(173, 349);
             this.refreshButton.Name = "refreshButton";
             this.refreshButton.Size = new System.Drawing.Size(75, 26);
             this.refreshButton.TabIndex = 2;
@@ -119,7 +119,7 @@
             // changeButton
             // 
             this.changeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.changeButton.Location = new System.Drawing.Point(12, 412);
+            this.changeButton.Location = new System.Drawing.Point(12, 349);
             this.changeButton.Name = "changeButton";
             this.changeButton.Size = new System.Drawing.Size(75, 26);
             this.changeButton.TabIndex = 5;
@@ -145,7 +145,7 @@
             this.nickBox.ReadOnly = true;
             this.nickBox.RowHeadersVisible = false;
             this.nickBox.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.nickBox.Size = new System.Drawing.Size(317, 390);
+            this.nickBox.Size = new System.Drawing.Size(317, 331);
             this.nickBox.TabIndex = 10;
             this.nickBox.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.nickBox_CellClick);
             this.nickBox.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.nickBox_CellMouseUp);
@@ -181,7 +181,7 @@
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(93, 412);
+            this.resetButton.Location = new System.Drawing.Point(93, 349);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 26);
             this.resetButton.TabIndex = 11;
@@ -247,7 +247,7 @@
             // 
             // fullrefreshButton
             // 
-            this.fullrefreshButton.Location = new System.Drawing.Point(254, 412);
+            this.fullrefreshButton.Location = new System.Drawing.Point(254, 349);
             this.fullrefreshButton.Name = "fullrefreshButton";
             this.fullrefreshButton.Size = new System.Drawing.Size(75, 26);
             this.fullrefreshButton.TabIndex = 19;
@@ -268,7 +268,7 @@
             // 
             // customnameTextBox
             // 
-            this.customnameTextBox.Location = new System.Drawing.Point(12, 444);
+            this.customnameTextBox.Location = new System.Drawing.Point(12, 381);
             this.customnameTextBox.Name = "customnameTextBox";
             this.customnameTextBox.Size = new System.Drawing.Size(259, 20);
             this.customnameTextBox.TabIndex = 21;
@@ -276,7 +276,7 @@
             // 
             // setupButton
             // 
-            this.setupButton.Location = new System.Drawing.Point(277, 444);
+            this.setupButton.Location = new System.Drawing.Point(277, 381);
             this.setupButton.Name = "setupButton";
             this.setupButton.Size = new System.Drawing.Size(52, 20);
             this.setupButton.TabIndex = 22;
@@ -306,7 +306,6 @@
             this.getByteNameToolStripMenuItem});
             this.nickBoxContextMenuStrip.Name = "nickBoxContextMenuStrip";
             this.nickBoxContextMenuStrip.Size = new System.Drawing.Size(215, 136);
-            this.nickBoxContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.nickBoxContextMenuStrip_Opening);
             this.nickBoxContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.nickBoxContextMenuStrip_ItemClicked);
             // 
             // stealNameToolStripMenuItem
@@ -375,7 +374,6 @@
             this.getByteNameToolStripMenuItem.Name = "getByteNameToolStripMenuItem";
             this.getByteNameToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.getByteNameToolStripMenuItem.Text = "Get byte name";
-            this.getByteNameToolStripMenuItem.Click += new System.EventHandler(this.getByteNameToolStripMenuItem_Click);
             // 
             // rightspamButton
             // 
@@ -532,7 +530,7 @@
             // 
             // unlockButton
             // 
-            this.unlockButton.Location = new System.Drawing.Point(575, 476);
+            this.unlockButton.Location = new System.Drawing.Point(335, 413);
             this.unlockButton.Name = "unlockButton";
             this.unlockButton.Size = new System.Drawing.Size(10, 10);
             this.unlockButton.TabIndex = 31;
@@ -616,7 +614,7 @@
             // 
             // clanTextBox
             // 
-            this.clanTextBox.Location = new System.Drawing.Point(12, 466);
+            this.clanTextBox.Location = new System.Drawing.Point(12, 403);
             this.clanTextBox.Name = "clanTextBox";
             this.clanTextBox.Size = new System.Drawing.Size(259, 20);
             this.clanTextBox.TabIndex = 42;
@@ -624,7 +622,7 @@
             // 
             // clanButton
             // 
-            this.clanButton.Location = new System.Drawing.Point(277, 466);
+            this.clanButton.Location = new System.Drawing.Point(277, 403);
             this.clanButton.Name = "clanButton";
             this.clanButton.Size = new System.Drawing.Size(52, 20);
             this.clanButton.TabIndex = 43;
@@ -734,7 +732,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 488);
+            this.ClientSize = new System.Drawing.Size(592, 431);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.trackBar5);
             this.Controls.Add(this.trackBar4);
@@ -775,7 +773,7 @@
             this.ImeMode = System.Windows.Forms.ImeMode.On;
             this.MaximizeBox = false;
             this.Name = "AnimeForm";
-            this.Text = "AnimeSoftware";
+            this.Text = "Animesoftware";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.AnimeForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.nickBox)).EndInit();

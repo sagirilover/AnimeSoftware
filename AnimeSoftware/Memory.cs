@@ -45,6 +45,7 @@ namespace AnimeSoftware
 
         public static bool OpenProcess(string name)
         {
+            
             try
             {
                 process = Process.GetProcessesByName(name)[0];

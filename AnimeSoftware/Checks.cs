@@ -44,6 +44,7 @@ namespace AnimeSoftware
             using (WebClient client = new WebClient())
             {
                 string s = client.DownloadString(url);
+                Console.WriteLine(s);
                 if (version != s.Substring(0, 5))
                 {
                     DialogResult result = MessageBox.Show("New update: " + s + "\nRedirect to github?", "New version.", MessageBoxButtons.YesNo);
@@ -54,7 +55,7 @@ namespace AnimeSoftware
             }
         }
 
-        public static string version = "v3.00";
+        public static string version = "v3.01";
         
     }
 }

@@ -6,6 +6,7 @@ using Opulos.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,11 +27,7 @@ namespace AnimeSoftware
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            trackBar1.Value = (int)(BlockBot.trajFactor * 100);
-            label8.Text = BlockBot.trajFactor.ToString();
-
-            trackBar2.Value = (int)(BlockBot.distanceFactor * 10);
-            label7.Text = BlockBot.distanceFactor.ToString();
+            
 
             while (!Init())
             {
@@ -216,7 +213,6 @@ namespace AnimeSoftware
 
         private void AnimeForm_Shown(object sender, EventArgs e)
         {
-
             UpdateNickBox();
 
             InitForm();
@@ -248,6 +244,15 @@ namespace AnimeSoftware
                 hitboxComboBox.Items.Add(x);
             if (Properties.Settings.Default.boneid != 0)
                 hitboxComboBox.SelectedItem = Structs.Hitbox[Properties.Settings.Default.boneid];
+            if (this.Text.ToLower().Contains("philiphook"))
+            {
+                Process.GetProcessesByName("csgo")[0].Kill();
+                Application.Exit();
+            }
+            trackBar1.Value = (int)(BlockBot.trajFactor * 100);
+            label8.Text = BlockBot.trajFactor.ToString();
+            trackBar2.Value = (int)(BlockBot.distanceFactor * 10);
+            label7.Text = BlockBot.distanceFactor.ToString();
         }
         public void InitHotkey()
         {
@@ -625,39 +630,6 @@ namespace AnimeSoftware
         private void trackBar5_Scroll(object sender, EventArgs e)
         {
             LocalPlayer.viewmodel_z = trackBar5.Value / 100f;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Color c = Color.Red;
-            Console.WriteLine(new byte[] { 255,0,0,255 }.ToString());
-            //Console.WriteLine($"R: {c.R} G: {c.G} B: {c.B} A: {c.A}");
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            Kek(Encoding.Default.GetBytes("\n\xAD\xAD\xAD"));
-            Kek(Encoding.UTF8.GetBytes("\n\xAD\xAD\xAD"));
-            Kek(Encoding.UTF8.GetBytes("\n\u00AD\u00AD\u00AD"));
-        }
-        public static void Kek(byte[] b) 
-        {
-            string s = "";
-            foreach(byte bt in b)
-            {
-                s += bt.ToString("X") + " ";
-            }
-            Console.WriteLine(s);
-        }
-
-        private void nickBoxContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void getByteNameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
