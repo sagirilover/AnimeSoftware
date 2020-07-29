@@ -274,7 +274,7 @@ namespace AnimeSoftware.Objects
         {
             get
             {
-                return Memory.Read<Vector>(Ptr + netvars.m_Local + netvars.m_aimPunchAngle);
+                return Memory.Read<Vector>(Ptr + netvars.m_aimPunchAngle);
             }
         }
         public static Vector LocalViewAngle

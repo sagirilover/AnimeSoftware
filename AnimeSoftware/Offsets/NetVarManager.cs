@@ -29,7 +29,7 @@ namespace AnimeSoftware.Offsets
             }
             return hashtable;
         }
-        public unsafe static Hashtable DumpTable(RecvTable* table)
+        public unsafe static Hashtable DumpTable(RecvTable* table, int offset = 0)
         {
             Hashtable hashtable = new Hashtable();
             for (int i = 0; i < table->GetPropsCount(); i++)
@@ -42,11 +42,11 @@ namespace AnimeSoftware.Offsets
                     continue;
 
                 if (!hashtable.ContainsKey( prop->GetName()))
-                    hashtable.Add(prop->GetName(), prop->GetOffset());
+                    hashtable.Add(prop->GetName(), prop->GetOffset() + offset);
 
                 if (prop->GetDataTable() != null)
                 {
-                    foreach (DictionaryEntry entry in DumpTable(prop->GetDataTable()))
+                    foreach (DictionaryEntry entry in DumpTable(prop->GetDataTable(), prop->GetOffset() + offset))
                     {
                         if (!hashtable.ContainsKey(entry.Key))
                             hashtable.Add(entry.Key, entry.Value);
@@ -58,45 +58,45 @@ namespace AnimeSoftware.Offsets
 
         #region Debug
 
-        public unsafe static void DumpTable(RecvTable* table, int depth)
-        {
-            for (int i = 0; i < table->GetPropsCount(); i++)
-            {
-                RecvProp* prop = (RecvProp*)((IntPtr)table->GetRecvProps() + i * sizeof(RecvProp));
-
-                try
-                {
-                    if (prop == null)
-                        continue;
-                    if (prop->GetName().Contains("baseclass") || prop->GetName().StartsWith("0") || prop->GetName().StartsWith("1") || prop->GetName().StartsWith("2"))
-                        continue;
-
-                    Console.WriteLine(new string(' ', depth * 2) + prop->GetName() + "  0x" + prop->GetOffset().ToString("X"));
-
-                    if (prop->GetDataTable() != null)
-                    {
-                        DumpTable(prop->GetDataTable(), depth + 1);
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                    Console.WriteLine(((IntPtr)prop).ToString("X"));
-                    Console.WriteLine(ex.ToString());
-                }
-
-            }
-        }
-        public unsafe static void DebugFullDump()
-        {
-            for (ClientClass* i = (ClientClass*)(Memory.Client + signatures.dwGetAllClasses); i != null; i = i->Next())
-            {
-                Console.WriteLine(i->GetName());
-                Console.WriteLine("__" + i->GetRecvTable()->GetName());
-                DumpTable(i->GetRecvTable(), 2);
-
-            }
-        }
+        //public unsafe static void DumpTable(RecvTable* table, int depth)
+        //{
+        //    for (int i = 0; i < table->GetPropsCount(); i++)
+        //    {
+        //        RecvProp* prop = (RecvProp*)((IntPtr)table->GetRecvProps() + i * sizeof(RecvProp));
+        //
+        //        try
+        //        {
+        //            if (prop == null)
+        //                continue;
+        //            if (prop->GetName().Contains("baseclass") || prop->GetName().StartsWith("0") || prop->GetName().StartsWith("1") || prop->GetName().StartsWith("2"))
+        //                continue;
+        //
+        //            Console.WriteLine(new string(' ', depth * 2) + prop->GetName() + "  0x" + prop->GetOffset().ToString("X"));
+        //
+        //            if (prop->GetDataTable() != null)
+        //            {
+        //                DumpTable(prop->GetDataTable(), depth + 1);
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //
+        //            Console.WriteLine(((IntPtr)prop).ToString("X"));
+        //            Console.WriteLine(ex.ToString());
+        //        }
+        //
+        //    }
+        //}
+        //public unsafe static void DebugFullDump()
+        //{
+        //    for (ClientClass* i = (ClientClass*)(Memory.Client + signatures.dwGetAllClasses); i != null; i = i->Next())
+        //    {
+        //        Console.WriteLine(i->GetName());
+        //        Console.WriteLine("__" + i->GetRecvTable()->GetName());
+        //        DumpTable(i->GetRecvTable(), 2);
+        //
+        //    }
+        //}
 
         #endregion
     }
