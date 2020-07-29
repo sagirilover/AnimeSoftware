@@ -20,6 +20,116 @@ namespace AnimeSoftware
         };
     }
 
+    public unsafe struct ClientClass
+    {
+        IntPtr m_pCreateFn;
+        IntPtr m_pCreateEventFn;
+        ConstChar* m_pNetworkName;
+        RecvTable* m_pRecvTable;
+        ClientClass* m_pNext;
+        int m_ClassID;
+
+        public string GetName()
+        {
+            fixed (ClientClass* ptr = &this)
+                return ((ConstChar*)Memory.Read<IntPtr>((int)ptr + 0x8))->ToString();
+        }
+
+        public RecvTable* GetRecvTable()
+        {
+            fixed (ClientClass* ptr = &this)
+                return ((RecvTable*)Memory.Read<IntPtr>((int)ptr + 0xC));
+        }
+
+        public ClientClass* Next()
+        {
+            fixed (ClientClass* ptr = &this)
+                return ((ClientClass*)Memory.Read<IntPtr>((int)ptr + 0x10));
+        }
+    }
+    public unsafe struct RecvTable
+    {
+        RecvProp* m_pProps;
+        int m_nProps;
+        IntPtr m_pDecoder;
+        ConstChar* m_pNetTableName;
+        byte m_bInitialized;
+        byte m_bInMainList;
+
+        public string GetName()
+        {
+            fixed (RecvTable* ptr = &this)
+                return ((ConstChar*)Memory.Read<IntPtr>((int)ptr + 0xC))->ToString();
+        }
+
+        public RecvProp* GetRecvProps()
+        {
+            fixed (RecvTable* ptr = &this)
+                return ((RecvProp*)Memory.Read<IntPtr>((int)ptr));
+        }
+
+        public int GetPropsCount()
+        {
+            fixed (RecvTable* ptr = &this)
+                return Memory.Read<int>((int)ptr + 0x4);
+        }
+    }
+    public unsafe struct RecvProp
+    {
+        ConstChar* m_pVarName;
+        int m_RecvType;
+        int m_Flags;
+        int m_StringBufferSize;
+        int m_bInsideArray;
+        IntPtr m_pExtraData;
+        RecvProp* m_pArrayProp;
+        IntPtr m_ArrayLengthProxy;
+        IntPtr m_ProxyFn;
+        IntPtr m_DataTableProxyFn;
+        RecvTable* m_pDataTable;
+        int m_Offset;
+        int m_ElementStride;
+        int m_nElements;
+        ConstChar* m_pParentArrayPropName;
+
+        public RecvTable* GetDataTable()
+        {
+            fixed (RecvProp* ptr = &this)
+                return ((RecvTable*)Memory.Read<IntPtr>((int)ptr + 0x28));
+        }
+
+        public string GetName()
+        {
+            fixed (RecvProp* ptr = &this)
+                return ((ConstChar*)Memory.Read<IntPtr>((int)ptr))->ToString();
+        }
+
+        public int GetOffset()
+        {
+            fixed (RecvProp* ptr = &this)
+                return (int)Memory.Read<IntPtr>((int)ptr + 0x2C);
+        }
+    }
+    public unsafe struct ConstChar
+    {
+        public override string ToString()
+        {
+            int len = 0;
+            fixed (ConstChar* ptr = &this)
+            {
+                while (Memory.ReadByte((int)ptr + len) != 0)
+                    len++;
+
+                return Encoding.UTF8.GetString(Memory.ReadBytes((int)ptr, len));
+            }
+        }
+
+        public bool Contains(string target)
+        {
+            return this.ToString().Contains(target);
+        }
+    }
+
     public struct Rect
     {
         public int left;
@@ -92,7 +202,7 @@ namespace AnimeSoftware
         [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
         public bool m_bCameraMovingWithMouse;     // 0x9E
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
-        public Vector3 m_vecCameraOffset;            // 0xA0
+        public Vector m_vecCameraOffset;            // 0xA0
         [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
         public bool m_bCameraDistanceMove;        // 0xAC
         [MarshalAs(UnmanagedType.U1, SizeConst = 4)]
@@ -106,9 +216,9 @@ namespace AnimeSoftware
         [MarshalAs(UnmanagedType.U1, SizeConst = 4)]
         public bool m_bCameraIsOrthographic;      // 0xC0
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
-        public Vector3 m_vecPreviousViewAngles;      // 0xC4
+        public Vector m_vecPreviousViewAngles;      // 0xC4
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
-        public Vector3 m_vecPreviousViewAnglesTilt;  // 0xD0
+        public Vector m_vecPreviousViewAnglesTilt;  // 0xD0
         [MarshalAs(UnmanagedType.U1, SizeConst = 4)]
         public float m_flLastForwardMove;          // 0xDC
         [MarshalAs(UnmanagedType.U1, SizeConst = 4)]
@@ -131,9 +241,9 @@ namespace AnimeSoftware
         [MarshalAs(UnmanagedType.U1, SizeConst = 4)]
         public int m_iTickCount;        // 0x08
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
-        public Vector3 m_vecViewAngles;     // 0x0C
+        public Vector m_vecViewAngles;     // 0x0C
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
-        public Vector3 m_vecAimDirection;   // 0x18
+        public Vector m_vecAimDirection;   // 0x18
         [MarshalAs(UnmanagedType.U1, SizeConst = 4)]
         public float m_flForwardmove;     // 0x24
         [MarshalAs(UnmanagedType.U1, SizeConst = 4)]
@@ -269,18 +379,72 @@ namespace AnimeSoftware
             }
         }
     }
-    public struct Vector3
+    public struct Vector
     {
+
         public float x;
         public float y;
         public float z;
 
-        public Vector3(float _x, float _y, float _z)
+        public Vector(float x = 0, float y = 0, float z = 0)
         {
-            x = _x;
-            y = _y;
-            z = _z;
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
+
+        public static bool operator ==(Vector a, Vector b)
+        {
+            return (a.x == b.x && a.y == b.y && a.z == b.z);
+        }
+
+        public static bool operator !=(Vector a, Vector b)
+        {
+            return (a.x != b.x || a.y != b.y || a.z != b.z);
+        }
+        public static Vector operator -(Vector a, Vector b)
+        {
+            return new Vector(a.x - b.x, a.y - b.y, a.z - b.z);
+        }
+        public static Vector operator +(Vector a, Vector b)
+        {
+            return new Vector(a.x + b.x, a.y + b.y, a.z + b.z);
+        }
+        public static Vector operator /(Vector a, Vector b)
+        {
+            return new Vector(a.x / b.x, a.y / b.y, a.z / b.z);
+        }
+        public static Vector operator *(Vector a, Vector b)
+        {
+            return new Vector(a.x * b.x, a.y * b.y, a.z * b.z);
+        }
+        public static Vector operator /(Vector a, int b)
+        {
+            return new Vector(a.x / b, a.y / b, a.z / b);
+        }
+        public static Vector operator *(Vector a, int b)
+        {
+            return new Vector(a.x * b, a.y * b, a.z * b);
+        }
+        public static Vector operator /(Vector a, float b)
+        {
+            return new Vector(a.x / b, a.y / b, a.z / b);
+        }
+        public static Vector operator *(Vector a, float b)
+        {
+            return new Vector(a.x * b, a.y * b, a.z * b);
+        }
+
+        public float DotProduct(float x, float y, float z)
+        {
+            return this.x * x + this.y * y + this.z * z;
+        }
+
+        public float DistanceTo(Vector dst)
+        {
+            return (float)Math.Sqrt((dst.x - x) * (dst.x - x) + (dst.y - y) * (dst.y - y) + (dst.z - z) * (dst.z - z));
+        }
+
         public float Length
         {
             get
@@ -288,37 +452,49 @@ namespace AnimeSoftware
                 return (float)Math.Sqrt((x * x) + (y * y) + (z * z));
             }
         }
-        public static Vector3 operator -(Vector3 a, Vector3 b)
+        public float Length2D
         {
-            return new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
+            get
+            {
+                return (float)Math.Sqrt((x * x) + (y * y));
+            }
         }
-        public static Vector3 operator +(Vector3 a, Vector3 b)
+
+        public void Normalize()
         {
-            return new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
+            while (y > 180)
+            {
+                y -= 360;
+            }
+            while (y < -180)
+            {
+                y += 360;
+            }
+
+            while (x > 89)
+            {
+                x -= 180;
+            }
+
+            while (x < -89)
+            {
+                x += 180;
+            }
         }
-        public static Vector3 operator /(Vector3 a, Vector3 b)
+
+        public override string ToString()
         {
-            return new Vector3(a.x / b.x, a.y / b.y, a.z / b.z);
+            return $"X: {x}, Y: {y}, Z: {z}";
         }
-        public static Vector3 operator *(Vector3 a, Vector3 b)
+
+        public override bool Equals(object obj)
         {
-            return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
+            return base.Equals(obj);
         }
-        public static Vector3 operator /(Vector3 a, int b)
+
+        public override int GetHashCode()
         {
-            return new Vector3(a.x / b, a.y / b, a.z / b);
-        }
-        public static Vector3 operator *(Vector3 a, int b)
-        {
-            return new Vector3(a.x * b, a.y * b, a.z * b);
-        }
-        public static Vector3 operator /(Vector3 a, float b)
-        {
-            return new Vector3(a.x / b, a.y / b, a.z / b);
-        }
-        public static Vector3 operator *(Vector3 a, float b)
-        {
-            return new Vector3(a.x * b, a.y * b, a.z * b);
+            return base.GetHashCode();
         }
     }
 }

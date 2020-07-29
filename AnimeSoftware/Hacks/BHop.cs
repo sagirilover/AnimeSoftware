@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
-using hazedumper;
+using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Hacks
 {
@@ -29,7 +29,7 @@ namespace AnimeSoftware.Hacks
                 if (LocalPlayer.Speed <= 0)
                     continue;
 
-                Vector3 oldAngle = LocalPlayer.ViewAngle;
+                Vector oldAngle = LocalPlayer.ViewAngle;
 
                 while ((DllImport.GetAsyncKeyState(0x20) & 0x8000) != 0)
                 {
@@ -38,7 +38,7 @@ namespace AnimeSoftware.Hacks
                     if (Properties.Settings.Default.autostrafe)
                     {
                         strafe = true;
-                        Vector3 cuurentAngle = LocalPlayer.ViewAngle;
+                        Vector cuurentAngle = LocalPlayer.ViewAngle;
                         if (cuurentAngle.y > oldAngle.y)
                         {
                             LocalPlayer.MoveLeft();

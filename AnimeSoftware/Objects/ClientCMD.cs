@@ -28,7 +28,7 @@ namespace AnimeSoftware.Objects
             var szCmd_bytes = Encoding.UTF8.GetBytes(szCmd + "\0");
 
             Memory.WriteProcessMemory(Memory.pHandle, Address, szCmd_bytes, szCmd_bytes.Length, 0);
-            IntPtr Thread = DllImport.CreateRemoteThread(Memory.pHandle, (IntPtr)null, IntPtr.Zero, new IntPtr(Memory.Engine + ScannedOffsets.ClientCMD), Address, 0, (IntPtr)null);
+            IntPtr Thread = DllImport.CreateRemoteThread(Memory.pHandle, (IntPtr)null, IntPtr.Zero, new IntPtr(Memory.Engine + CalcedOffsets.ClientCMD), Address, 0, (IntPtr)null);
             DllImport.CloseHandle(Thread);
             DllImport.WaitForSingleObject(Thread, 0xFFFFFFFF);
         }

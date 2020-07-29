@@ -1,6 +1,7 @@
 ﻿using AnimeSoftware.Objects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -17,6 +18,9 @@ namespace AnimeSoftware
         {
             while (true)
             {
+                if (Process.GetProcessesByName("csgo").Length == 0)
+                    Application.Exit();
+
                 if (!LocalPlayer.InGame)
                     Update = false;
 
@@ -54,7 +58,7 @@ namespace AnimeSoftware
             }
         }
 
-        public static string version = "v3.10";
+        public static string version = "v4.00";
         
     }
 }

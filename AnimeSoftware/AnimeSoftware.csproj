@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -42,6 +45,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,7 +63,8 @@
     <Compile Include="AlphaColorPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Checks.cs" />
+    <Compile Include="Offsets\Offsets.cs" />
+    <Compile Include="Utils\Checks.cs" />
     <Compile Include="Hacks\ChatSpammer.cs" />
     <Compile Include="Hacks\ClanTag.cs" />
     <Compile Include="Hacks\ConVarManager.cs" />
@@ -68,7 +73,6 @@
     <Compile Include="Hacks\NameStealer.cs" />
     <Compile Include="Hacks\RunboostBot.cs" />
     <Compile Include="Hacks\WeaponSpammer.cs" />
-    <Compile Include="Hotkey.cs" />
     <Compile Include="Injections\CreateThread.cs" />
     <Compile Include="Injections\ConVar.cs" />
     <Compile Include="Hacks\Aimbot.cs" />
@@ -85,15 +89,8 @@
       <DependentUpon>AnimeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\LocalPlayer.cs" />
-    <Compile Include="Math.cs" />
-    <Compile Include="Memory.cs" />
-    <Compile Include="Offsets\Offsets.cs" />
-    <Compile Include="Overlay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Overlay.Designer.cs">
-      <DependentUpon>Overlay.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Utils\Memory.cs" />
+    <Compile Include="Offsets\NetVarManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Hotkey.Designer.cs">
@@ -101,13 +98,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Hotkey.settings</DependentUpon>
     </Compile>
-    <Compile Include="Offsets\ScannedOffsets.cs" />
-    <Compile Include="Structs.cs" />
+    <Compile Include="Offsets\CalcedOffsets.cs" />
+    <Compile Include="Objects\Structs.cs" />
+    <Compile Include="Utils\Log.cs" />
     <EmbeddedResource Include="AnimeForm.resx">
       <DependentUpon>AnimeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Overlay.resx">
-      <DependentUpon>Overlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

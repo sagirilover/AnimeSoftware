@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
-using hazedumper;
+using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Hacks
 {
@@ -44,7 +44,7 @@ namespace AnimeSoftware.Hacks
 
                     boosting = true;
 
-                    Vector3 position = target.Position;
+                    Vector position = target.Position;
 
                     if (target.Speed <= 0)
                     {

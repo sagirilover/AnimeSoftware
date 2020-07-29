@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
-using hazedumper;
+using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Hacks
 {

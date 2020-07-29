@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using hazedumper;
+using AnimeSoftware.Offsets;
 using System.Drawing;
 using AnimeSoftware.Objects;
 using System.Threading;

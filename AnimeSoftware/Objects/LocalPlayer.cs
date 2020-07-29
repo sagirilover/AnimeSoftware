@@ -5,16 +5,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AnimeSoftware.Injections;
-using hazedumper;
+using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Objects
 {
-    class LocalPlayer : IDisposable
+    class LocalPlayer
     {
-        public void Dispose()
-        {
-
-        }
         public static int Ptr
         {
             get
@@ -75,19 +71,19 @@ namespace AnimeSoftware.Objects
                 return Memory.Read<Int32>(Ptr + netvars.m_iShotsFired);
             }
         }
-        public static Vector3 Position
+        public static Vector Position
         {
             get
             {
-                Vector3 position = Memory.Read<Vector3>(Ptr + netvars.m_vecOrigin);
+                Vector position = Memory.Read<Vector>(Ptr + netvars.m_vecOrigin);
                 return position;
             }
         }
-        public static Vector3 Velocity
+        public static Vector Velocity
         {
             get
             {
-                Vector3 velocity = Memory.Read<Vector3>(Ptr + netvars.m_vecVelocity);
+                Vector velocity = Memory.Read<Vector>(Ptr + netvars.m_vecVelocity);
                 return velocity;
             }
         }
@@ -142,7 +138,7 @@ namespace AnimeSoftware.Objects
         {
             get
             {
-                Vector3 velocity = Velocity;
+                Vector velocity = Velocity;
                 float result = (float)Math.Sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
                 return result;
             }
@@ -164,7 +160,7 @@ namespace AnimeSoftware.Objects
         {
             set
             {
-                Memory.Write<int>(Memory.Read<int>(Memory.Client + ScannedOffsets.dwUse), value);
+                Memory.Write<int>(Memory.Read<int>(Memory.Client + CalcedOffsets.dwUse), value);
             }
         }
         public static bool InGame
@@ -180,7 +176,7 @@ namespace AnimeSoftware.Objects
         {
             set
             {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.cl_sidespeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_cl_sidespeed));
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.cl_sidespeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_cl_sidespeed));
             }
         }
 
@@ -188,7 +184,7 @@ namespace AnimeSoftware.Objects
         {
             set
             {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.cl_forwardspeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_cl_forwardspeed));
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.cl_forwardspeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_cl_forwardspeed));
             }
         }
 
@@ -196,7 +192,7 @@ namespace AnimeSoftware.Objects
         {
             set
             {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.viewmodel_x), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_viewmodel_x));
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.viewmodel_x), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_viewmodel_x));
             }
         }
 
@@ -204,7 +200,7 @@ namespace AnimeSoftware.Objects
         {
             set
             {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.viewmodel_y), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_viewmodel_y));
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.viewmodel_y), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_viewmodel_y));
             }
         }
 
@@ -212,7 +208,7 @@ namespace AnimeSoftware.Objects
         {
             set
             {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + ScannedOffsets.viewmodel_z), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ ScannedOffsets.xor_viewmodel_z));
+                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.viewmodel_z), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_viewmodel_z));
             }
         }
         public static int CrossHair
@@ -244,44 +240,44 @@ namespace AnimeSoftware.Objects
                 return Memory.Read<int>(Memory.Read<int>(Memory.Client + signatures.dwEntityList + (weaponHandle - 1) * 0x10) + netvars.m_iItemDefinitionIndex);
             }
         }
-        public static Vector3 ViewPosition
+        public static Vector ViewPosition
         {
             get
             {
-                Vector3 position = Position;
+                Vector position = Position;
                 position.z += Memory.Read<float>(Ptr + netvars.m_vecViewOffset + 0x8);
                 return position;
             }
         }
 
-        public static Vector3 ViewAngle
+        public static Vector ViewAngle
         {
             get
             {
                 int ClientState = Memory.Read<Int32>(Memory.Engine + signatures.dwClientState);
 
-                Vector3 viewAngles = Memory.Read<Vector3>(ClientState + signatures.dwClientState_ViewAngles);
+                Vector viewAngles = Memory.Read<Vector>(ClientState + signatures.dwClientState_ViewAngles);
                 return viewAngles;
             }
             set
             {
                 int ClientState = Memory.Read<Int32>(Memory.Engine + signatures.dwClientState);
 
-                Memory.Write<Vector3>(ClientState + signatures.dwClientState_ViewAngles, value);
+                Memory.Write<Vector>(ClientState + signatures.dwClientState_ViewAngles, value);
             }
         }
-        public static Vector3 PunchAngle
+        public static Vector PunchAngle
         {
             get
             {
-                return Memory.Read<Vector3>(Ptr + netvars.m_aimPunchAngle);
+                return Memory.Read<Vector>(Ptr + netvars.m_aimPunchAngle);
             }
         }
-        public static Vector3 LocalViewAngle
+        public static Vector LocalViewAngle
         {
             set
             {
-                Memory.Write<Vector3>(Ptr + netvars.m_viewPunchAngle, value);
+                Memory.Write<Vector>(Ptr + netvars.m_viewPunchAngle, value);
             }
         }
         public static float ViewAngleY

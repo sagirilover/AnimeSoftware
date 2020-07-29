@@ -1,5 +1,5 @@
 ﻿using System;
-using hazedumper;
+using AnimeSoftware.Offsets;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,10 +50,10 @@ namespace AnimeSoftware.Hacks
                     if ((LocalPlayer.Position - target.BonePosition(8)).Length < 43)
                     {
 
-                        Vector3 targetOrigin = target.Position + target.Velocity * trajFactor;
+                        Vector targetOrigin = target.Position + target.Velocity * trajFactor;
                         targetOrigin.z = 0;
 
-                        Vector3 localOrigin = LocalPlayer.Position;
+                        Vector localOrigin = LocalPlayer.Position;
                         localOrigin.z = 0;
 
                         float distance = (targetOrigin - localOrigin).Length;
@@ -74,7 +74,7 @@ namespace AnimeSoftware.Hacks
                             LocalPlayer.ForwardSpeed = 450;
                         else
                             LocalPlayer.ForwardSpeed = 0;
-                        Vector3 angle = Aimbot.CalcAngle(LocalPlayer.ViewPosition, target.Position);
+                        Vector angle = Aimbot.CalcAngle(LocalPlayer.ViewPosition, target.Position);
                         angle.y -= LocalPlayer.ViewAngle.y;
                         angle = Aimbot.NormalizedAngle(angle);
 
@@ -150,7 +150,7 @@ namespace AnimeSoftware.Hacks
                     else
                     {
                         bb = true;
-                        Vector3 angle = Aimbot.CalcAngle(LocalPlayer.ViewPosition, target.Position);
+                        Vector angle = Aimbot.CalcAngle(LocalPlayer.ViewPosition, target.Position);
                         angle.y -= LocalPlayer.ViewAngle.y;
                         angle = Aimbot.NormalizedAngle(angle);
 

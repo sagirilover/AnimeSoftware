@@ -12,7 +12,7 @@ namespace AnimeSoftware.Hacks
 {
     class Aimbot
     {
-        public static Vector3 oldPunchAngle = new Vector3();
+        public static Vector oldPunchAngle = new Vector();
         public static void Start()
         {
             while (Properties.Settings.Default.aimbot)
@@ -38,9 +38,9 @@ namespace AnimeSoftware.Hacks
 
             }
         }
-        public static Vector3 CalcAngle(Vector3 src, Vector3 dst)
+        public static Vector CalcAngle(Vector src, Vector dst)
         {
-            Vector3 angles = new Vector3 { x = 0, y = 0, z = 0 };
+            Vector angles = new Vector { x = 0, y = 0, z = 0 };
             double[] delta = { (src.x - dst.x), (src.y - dst.y), (src.z - dst.z) };
             float hyp = (float)Math.Sqrt(delta[0] * delta[0] + delta[1] * delta[1]);
             angles.x = (float)(Math.Atan(delta[2] / hyp) * 180.0f / Math.PI);
@@ -51,15 +51,15 @@ namespace AnimeSoftware.Hacks
             }
             return angles;
         }
-        public static Vector3 Smooth(Vector3 src, Vector3 dst)
+        public static Vector Smooth(Vector src, Vector dst)
         {
-            Vector3 smoothed = dst - src;
+            Vector smoothed = dst - src;
 
             smoothed = src + smoothed/100*Properties.Settings.Default.smooth;
 
             return smoothed;
         }
-        public static Vector3 RSC(Vector3 src)
+        public static Vector RSC(Vector src)
         {
             src -= LocalPlayer.PunchAngle * 2.0f;
             oldPunchAngle = LocalPlayer.PunchAngle * 2.0f;
@@ -108,7 +108,7 @@ namespace AnimeSoftware.Hacks
             return new Entity(Index);
         }
 
-        public static Vector3 NormalizedAngle(Vector3 src)
+        public static Vector NormalizedAngle(Vector src)
         {
             while (src.x > 89.0f)
                 src.x -= 180.0f;

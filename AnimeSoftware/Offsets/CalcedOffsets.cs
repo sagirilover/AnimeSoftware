@@ -4,18 +4,16 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-
-using hazedumper;
+using AnimeSoftware.Offsets;
+using AnimeSoftware.Utils;
+using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware
 {
-    class ScannedOffsets
+    unsafe class CalcedOffsets
     {
         public static int ClientCMD;
-        public static int UserInfoTable;
-        public static int SetConVar;
         public static int dwUse;
-        public static int Console;
 
         public static int cl_sidespeed;
         public static int cl_forwardspeed;

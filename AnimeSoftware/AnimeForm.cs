@@ -1,7 +1,9 @@
 ﻿using AnimeSoftware.Hacks;
 using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
-using hazedumper;
+using AnimeSoftware.Offsets;
+using AnimeSoftware.Utils;
+using AnimeSoftware.Offsets;
 using Opulos.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -25,10 +27,8 @@ namespace AnimeSoftware
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private unsafe void Form1_Load(object sender, EventArgs e)
         {
-            
-
             while (!Init())
             {
                 DialogResult result = MessageBox.Show("The game is not open.\nAlso make sure that you open the application as administrator.", "Can't attach to process", MessageBoxButtons.RetryCancel, MessageBoxIcon.Information);
@@ -45,7 +45,11 @@ namespace AnimeSoftware
                 }
                 Thread.Sleep(100);
             }
-            ScannedOffsets.Init();
+            
+            CalcedOffsets.Init();
+            Offsets.signatures.Init();
+            Offsets.netvars.Init();
+            
             Properties.Settings.Default.namestealer = false;
             Properties.Settings.Default.Save();
             Start();
@@ -106,8 +110,6 @@ namespace AnimeSoftware
             visualsThread.Start();
         }
 
-
-
         public void UpdateNickBox()
         {
             nickBox.Rows.Clear();
@@ -141,25 +143,26 @@ namespace AnimeSoftware
                 nickBox.Rows[ind].Cells["aliveColumn"].Style.ForeColor = statusColor;
             }
         }
+
         public static bool Init()
         {
             Checks.CheckVersion();
-            if (Properties.Settings.Default.debug)
-                Console.WriteLine("Update checked...");
+            Log.Debug("Update checked...");
+
             if (!Memory.OpenProcess("csgo"))
                 return false;
-            if (Properties.Settings.Default.debug)
-                Console.WriteLine("Process opened...");
+            Log.Debug("Process opened...");
+
             Thread.Sleep(100);
             if (!Memory.ProcessHandle())
                 return false;
-            if (Properties.Settings.Default.debug)
-                Console.WriteLine("Process handled...");
+            Log.Debug("Process handled...");
+
             Thread.Sleep(100);
             if (!Memory.GetModules())
                 return false;
-            if (Properties.Settings.Default.debug)
-                Console.WriteLine("Module get succses...");
+            Log.Debug("Module get succses...");
+
             return true;
         }
 
@@ -206,11 +209,6 @@ namespace AnimeSoftware
             UpdateNickBox();
         }
 
-        private void kickButton_Click(object sender, EventArgs e)
-        {
-            // idk how get UserID lol
-        }
-
         private void AnimeForm_Shown(object sender, EventArgs e)
         {
             UpdateNickBox();
@@ -244,11 +242,6 @@ namespace AnimeSoftware
                 hitboxComboBox.Items.Add(x);
             if (Properties.Settings.Default.boneid != 0)
                 hitboxComboBox.SelectedItem = Structs.Hitbox[Properties.Settings.Default.boneid];
-            if (this.Text.ToLower().Contains("philiphook"))
-            {
-                Process.GetProcessesByName("csgo")[0].Kill();
-                Application.Exit();
-            }
             trackBar1.Value = (int)(BlockBot.trajFactor * 100);
             label8.Text = BlockBot.trajFactor.ToString();
             trackBar2.Value = (int)(BlockBot.distanceFactor * 10);
@@ -544,7 +537,7 @@ namespace AnimeSoftware
             Properties.Settings.Default.chatcleaner = chatcleanerCheckBox.Checked;
             Properties.Settings.Default.Save();
 
-            Thread chatcleanerThread = new Thread(new ThreadStart(ChatSpammer.RceMem))
+            Thread chatcleanerThread = new Thread(new ThreadStart(ChatSpammer.ChatCleaner))
             {
                 Priority = ThreadPriority.Highest,
                 IsBackground = true,

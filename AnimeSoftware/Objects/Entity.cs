@@ -4,16 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using hazedumper;
+using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Objects
 {
-    class Entity : IDisposable
+    class Entity
     {
-        public void Dispose()
-        {
-
-        }
         public int Index;
         public int Ptr
         {
@@ -66,15 +62,15 @@ namespace AnimeSoftware.Objects
         {
             get
             {
-                return VectorMath.Distance(Position, LocalPlayer.Position);
+                return Position.DistanceTo(LocalPlayer.Position);
             }
         }
             
-        public Vector3 Velocity
+        public Vector Velocity
         {
             get
             {
-                Vector3 velocity = Memory.Read<Vector3>(Ptr + netvars.m_vecVelocity);
+                Vector velocity = Memory.Read<Vector>(Ptr + netvars.m_vecVelocity);
                 return velocity;
             }
         }
@@ -106,25 +102,25 @@ namespace AnimeSoftware.Objects
         {
             get
             {
-                Vector3 velocity = Velocity;
+                Vector velocity = Velocity;
                 float result = (float)Math.Sqrt(velocity.x * velocity.x + velocity.y * velocity.y + velocity.z * velocity.z);
                 return result;
             }
         }
-        public Vector3 Position
+        public Vector Position
         {
             get
             {
-                Vector3 position = Memory.Read<Vector3>(Ptr + netvars.m_vecOrigin);
+                Vector position = Memory.Read<Vector>(Ptr + netvars.m_vecOrigin);
                 return position;
             }
         }
 
-        public Vector3 ViewPosition
+        public Vector ViewPosition
         {
             get
             {
-                Vector3 position = Position;
+                Vector position = Position;
                 position.z += Memory.Read<float>(Ptr + netvars.m_vecViewOffset + 0x8);
                 return position;
             }
@@ -175,10 +171,10 @@ namespace AnimeSoftware.Objects
             return entityList.ToArray();
         }
 
-        public Vector3 BonePosition(int BoneID)
+        public Vector BonePosition(int BoneID)
         {
             int BoneMatrix = Memory.Read<Int32>(Ptr + netvars.m_dwBoneMatrix);
-            Vector3 position = new Vector3
+            Vector position = new Vector
             {
                 x = Memory.Read<float>(BoneMatrix + 0x30 * BoneID + 0x0C),
                 y = Memory.Read<float>(BoneMatrix + 0x30 * BoneID + 0x1C),
