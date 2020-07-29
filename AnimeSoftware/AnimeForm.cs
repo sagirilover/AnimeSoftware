@@ -53,7 +53,8 @@ namespace AnimeSoftware
             Properties.Settings.Default.namestealer = false;
             Properties.Settings.Default.Save();
             Start();
-
+            Log.Debug((IntPtr)(Offsets.netvars.m_Local + Offsets.netvars.m_aimPunchAngle));
+            //Log.Debug((IntPtr)Offsets.signatures.dwClientState_ViewAngles);
         }
 
 

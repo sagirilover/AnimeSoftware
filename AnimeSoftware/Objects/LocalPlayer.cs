@@ -9,8 +9,12 @@ using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Objects
 {
-    class LocalPlayer
+    class LocalPlayer : IDisposable
     {
+        public void Dispose()
+        {
+
+        }
         public static int Ptr
         {
             get
@@ -270,7 +274,7 @@ namespace AnimeSoftware.Objects
         {
             get
             {
-                return Memory.Read<Vector>(Ptr + netvars.m_aimPunchAngle);
+                return Memory.Read<Vector>(Ptr + netvars.m_Local + netvars.m_aimPunchAngle);
             }
         }
         public static Vector LocalViewAngle

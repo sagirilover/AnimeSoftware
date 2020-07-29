@@ -379,6 +379,8 @@ namespace AnimeSoftware
             }
         }
     }
+
+    [StructLayout(LayoutKind.Sequential)]
     public struct Vector
     {
 

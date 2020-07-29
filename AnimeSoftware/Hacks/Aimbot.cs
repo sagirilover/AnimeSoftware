@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Threading;
 using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
+using AnimeSoftware.Utils;
 
 namespace AnimeSoftware.Hacks
 {
@@ -33,9 +34,10 @@ namespace AnimeSoftware.Hacks
                 if (target.Index == -1)
                     continue;
 
-                LocalPlayer.ViewAngle = NormalizedAngle(Smooth(LocalPlayer.ViewAngle,RSC(CalcAngle(LocalPlayer.ViewPosition, target.BonePosition(Properties.Settings.Default.boneid)))));
+                var va  = NormalizedAngle(Smooth(LocalPlayer.ViewAngle,RSC(CalcAngle(LocalPlayer.ViewPosition, target.BonePosition(Properties.Settings.Default.boneid)))));
+                va.Normalize();
 
-
+                LocalPlayer.ViewAngle = va;
             }
         }
         public static Vector CalcAngle(Vector src, Vector dst)

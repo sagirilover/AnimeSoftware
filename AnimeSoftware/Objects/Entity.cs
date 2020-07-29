@@ -8,8 +8,13 @@ using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Objects
 {
-    class Entity
+    class Entity : IDisposable
     {
+        public void Dispose()
+        {
+
+        }
+
         public int Index;
         public int Ptr
         {
