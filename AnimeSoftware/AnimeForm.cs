@@ -517,6 +517,42 @@ namespace AnimeSoftware
                 Properties.Settings.Default.unlock = true;
                 Properties.Settings.Default.Save();
             }
+            if (customnameTextBox.Text == "Graphic design is my passion")
+            {
+                Color Back = Color.FromArgb(33, 39, 53);
+                Color Between = Color.FromArgb(43, 49, 63);
+                Color Fore = Color.FromArgb(238, 238, 238);
+
+                this.BackColor = Back;
+                this.ForeColor = Fore;
+
+                // Buttons
+                foreach (var ok in this.Controls.OfType<Button>())
+                {
+                    ok.BackColor = Between;
+                    ok.ForeColor = Fore;
+
+                    ok.TabStop = false;
+                    ok.FlatStyle = FlatStyle.Flat;
+                    ok.FlatAppearance.BorderSize = 0;
+                }
+
+                foreach (var ok in this.Controls.OfType<TextBox>())
+                {
+                    ok.BackColor = Between;
+                    ok.ForeColor = Fore;
+
+                    ok.TabStop = false;
+                }
+
+                // NickBox
+                nickBox.ColumnHeadersDefaultCellStyle.BackColor = Between;
+                nickBox.ColumnHeadersDefaultCellStyle.ForeColor = Fore;
+                nickBox.BackgroundColor = Back;
+                nickBox.ForeColor = Fore;
+                nickBox.TabStop = false;
+                nickBox.EnableHeadersVisualStyles = false;
+            }                        
             if (customnameTextBox.Text == "")
             {
                 if (Properties.Settings.Default.unlock)
