@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using AnimeSoftware.Offsets;
+using System;
 using System.Text;
-using System.Threading.Tasks;
-using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Injections
 {
@@ -28,7 +25,10 @@ namespace AnimeSoftware.Injections
             {
                 v3 = codes.tab[v2 ^ char.ToUpper(name[i])];
                 if (i + 1 == name.Length)
+                {
                     break;
+                }
+
                 v2 = codes.tab[v3 ^ char.ToUpper(name[i + 1])];
             }
             return v2 | (v3 << 8);
@@ -40,7 +40,7 @@ namespace AnimeSoftware.Injections
         }
         public int GetConVarAddress(string name)
         {
-            var hash = GetStringHash(name);
+            int hash = GetStringHash(name);
 
             int CvarEngine = Memory.Read<int>(Memory.vstdlib + signatures.interface_engine_cvar);
             int Pointer = Memory.Read<int>(Memory.Read<int>(CvarEngine + 0x34) + ((byte)hash * 4));

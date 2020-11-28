@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using AnimeSoftware.Objects;
 using System.Threading;
-using System.Threading.Tasks;
-using AnimeSoftware.Objects;
-using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Hacks
 {
-    class NameStealer
+    internal class NameStealer
     {
         public static int fakenametargetid = -1;
         public static bool faked = false;
@@ -20,7 +14,9 @@ namespace AnimeSoftware.Hacks
                 Thread.Sleep(1);
 
                 if (!LocalPlayer.InGame)
+                {
                     return;
+                }
 
                 if (Properties.Settings.Default.fakefriendlyfire && fakenametargetid != -1)
                 {
@@ -54,7 +50,10 @@ namespace AnimeSoftware.Hacks
                     foreach (Entity x in Entity.List())
                     {
                         if (!Properties.Settings.Default.namestealer)
+                        {
                             break;
+                        }
+
                         ConVarManager.StealName(x.Index);
                         Thread.Sleep(250);
                     }

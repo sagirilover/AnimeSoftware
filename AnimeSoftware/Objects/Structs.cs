@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Drawing;
-using System.Threading.Tasks;
-using System.Globalization;
 
 namespace AnimeSoftware
 {
-    class Structs
+    internal class Structs
     {
-        public static readonly int[] SpamWeaponList = new int[]{ 4,9,10,11,38,40,64,262208 };
+        public static readonly int[] SpamWeaponList = { 4, 9, 10, 11, 38, 40, 64, 262208 };
         public static Dictionary<int, string> Hitbox = new Dictionary<int, string>
         {
             [8] = "Head",
@@ -22,92 +20,110 @@ namespace AnimeSoftware
 
     public unsafe struct ClientClass
     {
-        IntPtr m_pCreateFn;
-        IntPtr m_pCreateEventFn;
-        ConstChar* m_pNetworkName;
-        RecvTable* m_pRecvTable;
-        ClientClass* m_pNext;
-        int m_ClassID;
+        private readonly IntPtr m_pCreateFn;
+        private readonly IntPtr m_pCreateEventFn;
+        private readonly ConstChar* m_pNetworkName;
+        private readonly RecvTable* m_pRecvTable;
+        private readonly ClientClass* m_pNext;
+        private readonly int m_ClassID;
 
         public string GetName()
         {
             fixed (ClientClass* ptr = &this)
+            {
                 return ((ConstChar*)Memory.Read<IntPtr>((int)ptr + 0x8))->ToString();
+            }
         }
 
         public RecvTable* GetRecvTable()
         {
             fixed (ClientClass* ptr = &this)
+            {
                 return ((RecvTable*)Memory.Read<IntPtr>((int)ptr + 0xC));
+            }
         }
 
         public ClientClass* Next()
         {
             fixed (ClientClass* ptr = &this)
+            {
                 return ((ClientClass*)Memory.Read<IntPtr>((int)ptr + 0x10));
+            }
         }
     }
     public unsafe struct RecvTable
     {
-        RecvProp* m_pProps;
-        int m_nProps;
-        IntPtr m_pDecoder;
-        ConstChar* m_pNetTableName;
-        byte m_bInitialized;
-        byte m_bInMainList;
+        private readonly RecvProp* m_pProps;
+        private readonly int m_nProps;
+        private readonly IntPtr m_pDecoder;
+        private readonly ConstChar* m_pNetTableName;
+        private readonly byte m_bInitialized;
+        private readonly byte m_bInMainList;
 
         public string GetName()
         {
             fixed (RecvTable* ptr = &this)
+            {
                 return ((ConstChar*)Memory.Read<IntPtr>((int)ptr + 0xC))->ToString();
+            }
         }
 
         public RecvProp* GetRecvProps()
         {
             fixed (RecvTable* ptr = &this)
+            {
                 return ((RecvProp*)Memory.Read<IntPtr>((int)ptr));
+            }
         }
 
         public int GetPropsCount()
         {
             fixed (RecvTable* ptr = &this)
+            {
                 return Memory.Read<int>((int)ptr + 0x4);
+            }
         }
     }
     public unsafe struct RecvProp
     {
-        ConstChar* m_pVarName;
-        int m_RecvType;
-        int m_Flags;
-        int m_StringBufferSize;
-        int m_bInsideArray;
-        IntPtr m_pExtraData;
-        RecvProp* m_pArrayProp;
-        IntPtr m_ArrayLengthProxy;
-        IntPtr m_ProxyFn;
-        IntPtr m_DataTableProxyFn;
-        RecvTable* m_pDataTable;
-        int m_Offset;
-        int m_ElementStride;
-        int m_nElements;
-        ConstChar* m_pParentArrayPropName;
+        private readonly ConstChar* m_pVarName;
+        private readonly int m_RecvType;
+        private readonly int m_Flags;
+        private readonly int m_StringBufferSize;
+        private readonly int m_bInsideArray;
+        private readonly IntPtr m_pExtraData;
+        private readonly RecvProp* m_pArrayProp;
+        private readonly IntPtr m_ArrayLengthProxy;
+        private readonly IntPtr m_ProxyFn;
+        private readonly IntPtr m_DataTableProxyFn;
+        private readonly RecvTable* m_pDataTable;
+        private readonly int m_Offset;
+        private readonly int m_ElementStride;
+        private readonly int m_nElements;
+        private readonly ConstChar* m_pParentArrayPropName;
 
         public RecvTable* GetDataTable()
         {
             fixed (RecvProp* ptr = &this)
+            {
                 return ((RecvTable*)Memory.Read<IntPtr>((int)ptr + 0x28));
+            }
         }
 
         public string GetName()
         {
             fixed (RecvProp* ptr = &this)
+            {
                 return ((ConstChar*)Memory.Read<IntPtr>((int)ptr))->ToString();
+            }
         }
 
         public int GetOffset()
         {
             fixed (RecvProp* ptr = &this)
+            {
                 return (int)Memory.Read<IntPtr>((int)ptr + 0x2C);
+            }
         }
     }
     public unsafe struct ConstChar
@@ -118,7 +134,9 @@ namespace AnimeSoftware
             fixed (ConstChar* ptr = &this)
             {
                 while (Memory.ReadByte((int)ptr + len) != 0)
+                {
                     len++;
+                }
 
                 return Encoding.UTF8.GetString(Memory.ReadBytes((int)ptr, len));
             }
@@ -126,7 +144,7 @@ namespace AnimeSoftware
 
         public bool Contains(string target)
         {
-            return this.ToString().Contains(target);
+            return ToString().Contains(target);
         }
     }
 
@@ -150,7 +168,7 @@ namespace AnimeSoftware
     {
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 255)]
         public int[] tab;
-    };
+    }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct player_info_s
@@ -174,7 +192,7 @@ namespace AnimeSoftware
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
         public int[] m_dwCustomFiles;
         public char m_FilesDownloaded;
-    };
+    }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct Input_t
@@ -229,7 +247,7 @@ namespace AnimeSoftware
         public int m_pCommands;                  // 0xEC
         [MarshalAs(UnmanagedType.U1, SizeConst = 4)]
         public int m_pVerifiedCommands;          // 0xF0
-    };
+    }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct UserCmd_t
@@ -262,21 +280,21 @@ namespace AnimeSoftware
         [MarshalAs(UnmanagedType.U1, SizeConst = 4)]
         public int m_iRandomSeed;       // 0x40
         [MarshalAs(UnmanagedType.U1, SizeConst = 2)]
-        public UInt16 m_siMouseDx;         // 0x44
+        public ushort m_siMouseDx;         // 0x44
         [MarshalAs(UnmanagedType.U1, SizeConst = 2)]
-        public UInt16 m_siMouseDy;         // 0x46
+        public ushort m_siMouseDy;         // 0x46
         [MarshalAs(UnmanagedType.U1, SizeConst = 1)]
-        bool m_bHasBeenPredicted; // 0x48
+        private readonly bool m_bHasBeenPredicted; // 0x48
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
         public int[] Pad2;
-    }; // size is 100 or 0x64
+    } // size is 100 or 0x64
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    struct VerifiedUserCmd_t
+    internal struct VerifiedUserCmd_t
     {
         public UserCmd_t m_Command;
-        public UInt32 m_Crc;
-    };
+        public uint m_Crc;
+    }
 
     public struct Signature
     {
@@ -303,13 +321,13 @@ namespace AnimeSoftware
 
         public Signature(string _signature, int _offset = 0)
         {
-            var _mask = string.Empty;
-            var patternBlocks = _signature.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            var pattern = new byte[patternBlocks.Length];
+            string _mask = string.Empty;
+            string[] patternBlocks = _signature.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            byte[] pattern = new byte[patternBlocks.Length];
 
             for (int i = 0; i < patternBlocks.Length; i++)
             {
-                var block = patternBlocks[i];
+                string block = patternBlocks[i];
 
                 if (block == "?")
                 {
@@ -321,7 +339,9 @@ namespace AnimeSoftware
                     _mask += "x";
                     if (!byte.TryParse(patternBlocks[i], NumberStyles.HexNumber,
                         CultureInfo.DefaultThreadCurrentCulture, out pattern[i]))
+                    {
                         throw new Exception("Signature Parsing Error");
+                    }
                 }
             }
 
@@ -335,15 +355,15 @@ namespace AnimeSoftware
     [StructLayout(LayoutKind.Sequential)]
     public struct GlowSettings
     {
-        byte renderWhenOccluded;
-        byte renderWhenUnoccluded;
-        byte fullBloomRender;
+        private readonly byte renderWhenOccluded;
+        private readonly byte renderWhenUnoccluded;
+        private readonly byte fullBloomRender;
 
         public GlowSettings(bool __renderWhenOccluded, bool __renderWhenUnoccluded, bool __fullBloom)
         {
-            renderWhenOccluded = __renderWhenOccluded == true ? (byte)1 : (byte)0;
-            renderWhenUnoccluded = __renderWhenUnoccluded == true ? (byte)1 : (byte)0;
-            fullBloomRender = __fullBloom == true ? (byte)1 : (byte)0;
+            renderWhenOccluded = __renderWhenOccluded ? (byte)1 : (byte)0;
+            renderWhenUnoccluded = __renderWhenUnoccluded ? (byte)1 : (byte)0;
+            fullBloomRender = __fullBloom ? (byte)1 : (byte)0;
         }
     }
 
@@ -360,7 +380,7 @@ namespace AnimeSoftware
             b = color.B / 255f;
             a = color.A / 255f;
         }
-        public GlowColor(float _r,float _g,float _b, float _a)
+        public GlowColor(float _r, float _g, float _b, float _a)
         {
             r = _r;
             g = _g;
@@ -369,15 +389,9 @@ namespace AnimeSoftware
         }
         public static Color operator *(GlowColor a, int b)
         {
-            return Color.FromArgb((int)a.a*b, (int)a.r * b, (int)a.g * b, (int)a.b * b);
+            return Color.FromArgb((int)a.a * b, (int)a.r * b, (int)a.g * b, (int)a.b * b);
         }
-        public Color ToColor
-        {
-            get
-            {
-                return Color.FromArgb((int)(a*255), (int)(r *255), (int)(g *255), (int)(b *255));
-            }
-        }
+        public Color ToColor => Color.FromArgb((int)(a * 255), (int)(r * 255), (int)(g * 255), (int)(b * 255));
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -447,20 +461,8 @@ namespace AnimeSoftware
             return (float)Math.Sqrt((dst.x - x) * (dst.x - x) + (dst.y - y) * (dst.y - y) + (dst.z - z) * (dst.z - z));
         }
 
-        public float Length
-        {
-            get
-            {
-                return (float)Math.Sqrt((x * x) + (y * y) + (z * z));
-            }
-        }
-        public float Length2D
-        {
-            get
-            {
-                return (float)Math.Sqrt((x * x) + (y * y));
-            }
-        }
+        public float Length => (float)Math.Sqrt((x * x) + (y * y) + (z * z));
+        public float Length2D => (float)Math.Sqrt((x * x) + (y * y));
 
         public void Normalize()
         {

@@ -1,52 +1,50 @@
-﻿using System;
+﻿using AnimeSoftware.Utils;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.IO;
-using AnimeSoftware.Utils;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace AnimeSoftware
 {
-    class Memory
+    internal class Memory
     {
         [DllImport("kernel32.dll")]
         private static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("Kernel32.dll")]
-        internal static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, UInt32 nSize, ref UInt32 lpNumberOfBytesRead);
+        internal static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint nSize, ref uint lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer, int dwSize, out IntPtr lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll")]
-        internal static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, IntPtr nSize, ref UInt32 lpNumberOfBytesWritten);
+        internal static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, IntPtr nSize, ref uint lpNumberOfBytesWritten);
 
         [DllImport("kernel32.dll")]
         public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] buffer, int size, int lpNumberOfBytesWritten);
 
-        const int PROCESS_VM_OPERATION = 0x0008;
-        const int PROCESS_VM_READ = 0x0010;
-        const int PROCESS_VM_WRITE = 0x0020;
+        private const int PROCESS_VM_OPERATION = 0x0008;
+        private const int PROCESS_VM_READ = 0x0010;
+        private const int PROCESS_VM_WRITE = 0x0020;
 
         public static Process process;
         public static IntPtr pHandle;
 
-        public static Int32 Client;
-        public static Int32 ClientSize;
-        public static Int32 Engine;
-        public static Int32 EngineSize;
-        public static Int32 vstdlib;
-        public static Int32 vstdlibSize;
+        public static int Client;
+        public static int ClientSize;
+        public static int Engine;
+        public static int EngineSize;
+        public static int vstdlib;
+        public static int vstdlibSize;
 
 
 
         public static bool OpenProcess(string name)
         {
-            
+
             try
             {
                 process = Process.GetProcessesByName(name)[0];
@@ -54,7 +52,7 @@ namespace AnimeSoftware
             }
             catch
             {
-                    Log.Error("Can't open process.");
+                Log.Error("Can't open process.");
                 return false;
             }
         }
@@ -68,7 +66,7 @@ namespace AnimeSoftware
             catch
             {
 
-                    Log.Error("Can't get handle.");
+                Log.Error("Can't get handle.");
                 return false;
             }
         }
@@ -81,18 +79,18 @@ namespace AnimeSoftware
                 {
                     if (module.ModuleName == "client.dll")
                     {
-                        Client = (Int32)module.BaseAddress;
-                        ClientSize = (Int32)module.ModuleMemorySize;
+                        Client = (int)module.BaseAddress;
+                        ClientSize = module.ModuleMemorySize;
                     }
                     else if (module.ModuleName == "engine.dll")
                     {
-                        Engine = (Int32)module.BaseAddress;
-                        EngineSize = (Int32)module.ModuleMemorySize;
+                        Engine = (int)module.BaseAddress;
+                        EngineSize = module.ModuleMemorySize;
                     }
                     else if (module.ModuleName == "vstdlib.dll")
                     {
-                        vstdlib = (Int32)module.BaseAddress;
-                        vstdlibSize = (Int32)module.ModuleMemorySize;
+                        vstdlib = (int)module.BaseAddress;
+                        vstdlibSize = module.ModuleMemorySize;
                     }
                 }
                 if ((IntPtr)Client == IntPtr.Zero || (IntPtr)Engine == IntPtr.Zero || (IntPtr)vstdlib == IntPtr.Zero)
@@ -105,51 +103,62 @@ namespace AnimeSoftware
             }
             catch
             {
-                    Log.Error("Module get error");
+                Log.Error("Module get error");
                 return false;
             }
 
         }
 
-        public static byte[] ReadBytes(Int32 address, int length)
+        public static byte[] ReadBytes(int address, int length)
         {
             byte[] buffer = new byte[length];
-            UInt32 nBytesRead = UInt32.MinValue;
-            bool success = ReadProcessMemory(pHandle, (IntPtr)address, buffer, (UInt32)length, ref nBytesRead);
+            uint nBytesRead = uint.MinValue;
+            bool success = ReadProcessMemory(pHandle, (IntPtr)address, buffer, (uint)length, ref nBytesRead);
             return buffer;
         }
 
-        public static byte[] ReadBytes(IntPtr address, int length) => ReadBytes((int)address, length);
+        public static byte[] ReadBytes(IntPtr address, int length)
+        {
+            return ReadBytes((int)address, length);
+        }
 
-        public static byte ReadByte(Int32 address)
+        public static byte ReadByte(int address)
         {
             return ReadBytes(address, 1)[0];
         }
 
-        public static T Read<T>(Int32 address)
+        public static T Read<T>(int address)
         {
             int length = Marshal.SizeOf(typeof(T));
 
             if (typeof(T) == typeof(bool))
+            {
                 length = 1;
+            }
 
             byte[] buffer = new byte[length];
-            UInt32 nBytesRead = UInt32.MinValue;
-            ReadProcessMemory(pHandle, (IntPtr)address, buffer, (UInt32)length, ref nBytesRead);
+            uint nBytesRead = uint.MinValue;
+            ReadProcessMemory(pHandle, (IntPtr)address, buffer, (uint)length, ref nBytesRead);
             return GetStructure<T>(buffer);
         }
 
-        public static T Read<T>(IntPtr address) => Read<T>((int)address);
-
-        public static void WriteBytes(Int32 address, byte[] value)
+        public static T Read<T>(IntPtr address)
         {
-            UInt32 nBytesRead = UInt32.MinValue;
+            return Read<T>((int)address);
+        }
+
+        public static void WriteBytes(int address, byte[] value)
+        {
+            uint nBytesRead = uint.MinValue;
             WriteProcessMemory(pHandle, (IntPtr)address, value, (IntPtr)value.Length, ref nBytesRead);
         }
 
-        public static void WriteBytes(IntPtr address, byte[] value) => WriteBytes((int)address, value);
+        public static void WriteBytes(IntPtr address, byte[] value)
+        {
+            WriteBytes((int)address, value);
+        }
 
-        public static void Write<T>(Int32 address, T value)
+        public static void Write<T>(int address, T value)
         {
             int length = Marshal.SizeOf(typeof(T));
             byte[] buffer = new byte[length];
@@ -159,29 +168,35 @@ namespace AnimeSoftware
             Marshal.Copy(ptr, buffer, 0, length);
             Marshal.FreeHGlobal(ptr);
 
-            UInt32 nBytesRead = UInt32.MinValue;
+            uint nBytesRead = uint.MinValue;
             WriteProcessMemory(pHandle, (IntPtr)address, buffer, (IntPtr)length, ref nBytesRead);
         }
 
-        public static void Write<T>(IntPtr address, T value) => Write<T>((int)address, value);
+        public static void Write<T>(IntPtr address, T value)
+        {
+            Write<T>((int)address, value);
+        }
 
         public static T GetStructure<T>(byte[] bytes)
         {
-            var handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            var structure = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
+            GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+            T structure = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(T));
             handle.Free();
             return structure;
         }
 
 
-        public static string ReadString(Int32 address, int bufferSize, Encoding enc)
+        public static string ReadString(int address, int bufferSize, Encoding enc)
         {
             byte[] buffer = new byte[bufferSize];
-            UInt32 nBytesRead = 0;
-            bool success = ReadProcessMemory(pHandle, (IntPtr)address, buffer, (UInt32)bufferSize, ref nBytesRead);
+            uint nBytesRead = 0;
+            bool success = ReadProcessMemory(pHandle, (IntPtr)address, buffer, (uint)bufferSize, ref nBytesRead);
             string text = enc.GetString(buffer);
             if (text.Contains('\0'))
+            {
                 text = text.Substring(0, text.IndexOf('\0'));
+            }
+
             return text;
         }
 
@@ -196,7 +211,7 @@ namespace AnimeSoftware
                     ms.WriteByte(read);
                     offset++;
                 }
-                var data = ms.ToArray();
+                byte[] data = ms.ToArray();
                 return Encoding.UTF8.GetString(data, 0, data.Length);
             }
         }
@@ -227,11 +242,15 @@ namespace AnimeSoftware
                         found = mask[l] == '?' || moduleBytes[l + i] == pattern[l];
 
                         if (!found)
+                        {
                             break;
+                        }
                     }
 
                     if (found)
+                    {
                         return i;
+                    }
                 }
             }
 
@@ -241,9 +260,9 @@ namespace AnimeSoftware
         public static int FindPattern(string signature, int moduleBase, int moduleSize)
         {
             List<byte> temp = new List<byte>();
-            foreach(var h in signature.Split(' '))
+            foreach (string h in signature.Split(' '))
             {
-                if(h == "?")
+                if (h == "?")
                 {
                     temp.Add(0);
                 }

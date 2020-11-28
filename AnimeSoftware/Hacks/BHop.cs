@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using AnimeSoftware.Injections;
+﻿using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
-using AnimeSoftware.Offsets;
+using System;
+using System.Threading;
 
 namespace AnimeSoftware.Hacks
 {
-    class BHop
+    internal class BHop
     {
         public static bool strafe = false;
-        private static Random rnd = new Random();
+        private static readonly Random rnd = new Random();
         public static void Start()
         {
             while (true)
@@ -21,13 +16,24 @@ namespace AnimeSoftware.Hacks
                 Thread.Sleep(1);
 
                 if (!Properties.Settings.Default.bhop)
+                {
                     continue;
+                }
+
                 if (!LocalPlayer.InGame)
+                {
                     continue;
+                }
+
                 if (LocalPlayer.Health <= 0)
+                {
                     continue;
+                }
+
                 if (LocalPlayer.Speed <= 0)
+                {
                     continue;
+                }
 
                 Vector oldAngle = LocalPlayer.ViewAngle;
 
@@ -52,7 +58,10 @@ namespace AnimeSoftware.Hacks
                     if (LocalPlayer.Flags == 257 || LocalPlayer.Flags == 263)
                     {
                         if (rnd.Next(100) < Properties.Settings.Default.bhopChoke)
+                        {
                             Thread.Sleep(20);
+                        }
+
                         LocalPlayer.Jump();
 
                     }
@@ -62,9 +71,9 @@ namespace AnimeSoftware.Hacks
                 {
                     LocalPlayer.MoveClearY();
                     strafe = false;
-                } 
+                }
 
-                
+
             }
         }
     }

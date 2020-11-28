@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using AnimeSoftware.Injections;
+using System;
 using System.Text;
-using System.Threading.Tasks;
-using AnimeSoftware.Injections;
 
 namespace AnimeSoftware.Objects
 {

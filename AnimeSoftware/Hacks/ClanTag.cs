@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿
 using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
 using AnimeSoftware.Offsets;
+using System;
+using System.Text;
+using System.Threading;
 
 namespace AnimeSoftware.Hacks
 {
@@ -23,7 +21,7 @@ namespace AnimeSoftware.Hacks
 
         public static int Size = Shellcode.Length;
         public static IntPtr Address;
-        private static Random rnd = new Random();
+        private static readonly Random rnd = new Random();
 
         private static string RandomGlitch(int length)
         {
@@ -48,11 +46,17 @@ namespace AnimeSoftware.Hacks
                 }
 
                 if (!lastState && LocalPlayer.Health == 100)
+                {
                     lastState = true;
+                }
 
                 if (LocalPlayer.IsDead)
+                {
                     if (!lastState)
+                    {
                         continue;
+                    }
+                }
 
                 string clear = new string(' ', 15);
                 string clantag = "animesoftware  ";
@@ -67,7 +71,7 @@ namespace AnimeSoftware.Hacks
                         ClanTag.Set("");
                         return;
                     }
-                        
+
                     safetag = clear.Remove(0, i).Insert(0, clantag.Substring(0, i));
                     ClanTag.Set(safetag);
                     Thread.Sleep(delay);
@@ -88,7 +92,7 @@ namespace AnimeSoftware.Hacks
                 }
 
                 ClanTag.Set(safetag = "sagirihook  ");
-                Thread.Sleep(delay*2);
+                Thread.Sleep(delay * 2);
 
                 for (int i = 0; i <= clantag.Length; i++)
                 {
@@ -120,24 +124,30 @@ namespace AnimeSoftware.Hacks
                 }
 
                 if (!lastState && LocalPlayer.Health == 100)
+                {
                     lastState = true;
+                }
+
                 if (LocalPlayer.IsDead)
+                {
                     if (lastState)
                     {
                         Set("velocity 0");
                         continue;
                     }
                     else
+                    {
                         continue;
+                    }
+                }
 
-                     
                 int vel = (int)Math.Floor(LocalPlayer.Speed);
                 Set("velocity " + vel.ToString());
                 if (vel > old)
                 {
                     old = vel;
                     changed = true;
-                }  
+                }
                 if ((vel == 0 || vel == 2) && changed && Properties.Settings.Default.velName)
                 {
                     ConVarManager.ChangeName("max " + old.ToString());
@@ -157,14 +167,19 @@ namespace AnimeSoftware.Hacks
                 alloc.Free();
 
                 if (Address == IntPtr.Zero)
+                {
                     return;
+                }
 
                 Buffer.BlockCopy(BitConverter.GetBytes((int)(Address + 18)), 0, Shellcode, 1, 4);
                 Buffer.BlockCopy(BitConverter.GetBytes((int)(Address + 18)), 0, Shellcode, 6, 4);
                 Buffer.BlockCopy(BitConverter.GetBytes(Memory.Engine + signatures.dwSetClanTag), 0, Shellcode, 11, 4);
             }
 
-            if (!LocalPlayer.InGame) return;
+            if (!LocalPlayer.InGame)
+            {
+                return;
+            }
 
             byte[] tag_bytes = Encoding.UTF8.GetBytes(tag + "\0");
             byte[] reset = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };

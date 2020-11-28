@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using AnimeSoftware.Offsets;
-using AnimeSoftware.Utils;
-using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware
 {
-    unsafe class CalcedOffsets
+    internal unsafe class CalcedOffsets
     {
         public static int ClientCMD;
         public static int dwUse;

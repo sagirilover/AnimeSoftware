@@ -1,17 +1,12 @@
 ﻿using AnimeSoftware.Hacks;
 using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
-using AnimeSoftware.Offsets;
 using AnimeSoftware.Utils;
-using AnimeSoftware.Offsets;
 using Opulos.Core.UI;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -45,11 +40,11 @@ namespace AnimeSoftware
                 }
                 Thread.Sleep(100);
             }
-            
+
             CalcedOffsets.Init();
             Offsets.signatures.Init();
             Offsets.netvars.Init();
-            
+
             Properties.Settings.Default.namestealer = false;
             Properties.Settings.Default.Save();
             Start();
@@ -115,16 +110,23 @@ namespace AnimeSoftware
         {
             nickBox.Rows.Clear();
             if (!LocalPlayer.InGame)
+            {
                 return;
+            }
+
             nickBox.Rows.Add(LocalPlayer.Index, LocalPlayer.Name);
             foreach (Entity x in Entity.List().Where(x => x.isTeam))
             {
                 Color teamColor = Color.Blue;
                 Color statusColor;
                 if (x.IsDead)
+                {
                     statusColor = Color.YellowGreen;
+                }
                 else
+                {
                     statusColor = Color.Green;
+                }
 
                 int ind = nickBox.Rows.Add(x.Index, x.Name2, !x.IsDead);
                 nickBox.Rows[ind].Cells["nameColumn"].Style.ForeColor = teamColor;
@@ -135,9 +137,13 @@ namespace AnimeSoftware
                 Color teamColor = Color.Red;
                 Color statusColor;
                 if (x.IsDead)
+                {
                     statusColor = Color.YellowGreen;
+                }
                 else
+                {
                     statusColor = Color.Green;
+                }
 
                 int ind = nickBox.Rows.Add(x.Index, x.Name2, !x.IsDead);
                 nickBox.Rows[ind].Cells["nameColumn"].Style.ForeColor = teamColor;
@@ -151,17 +157,26 @@ namespace AnimeSoftware
             Log.Debug("Update checked...");
 
             if (!Memory.OpenProcess("csgo"))
+            {
                 return false;
+            }
+
             Log.Debug("Process opened...");
 
             Thread.Sleep(100);
             if (!Memory.ProcessHandle())
+            {
                 return false;
+            }
+
             Log.Debug("Process handled...");
 
             Thread.Sleep(100);
             if (!Memory.GetModules())
+            {
                 return false;
+            }
+
             Log.Debug("Module get succses...");
 
             return true;
@@ -238,11 +253,20 @@ namespace AnimeSoftware
             Properties.Settings.Default.velName = false;
             Properties.Settings.Default.Save();
             if (Properties.Settings.Default.unlock)
-                this.Width += 145;
+            {
+                Width += 145;
+            }
+
             foreach (string x in Structs.Hitbox.Values)
+            {
                 hitboxComboBox.Items.Add(x);
+            }
+
             if (Properties.Settings.Default.boneid != 0)
+            {
                 hitboxComboBox.SelectedItem = Structs.Hitbox[Properties.Settings.Default.boneid];
+            }
+
             trackBar1.Value = (int)(BlockBot.trajFactor * 100);
             label8.Text = BlockBot.trajFactor.ToString();
             trackBar2.Value = (int)(BlockBot.distanceFactor * 10);
@@ -277,10 +301,13 @@ namespace AnimeSoftware
         private void namestealerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (namestealerCheckBox.Checked)
+            {
                 if (MessageBox.Show("Make sure, that you forced infinity name switching exploit in your other cheat.\nIn other way close this window.") != DialogResult.OK)
                 {
                     namestealerCheckBox.Checked = false;
                 }
+            }
+
             Properties.Settings.Default.namestealer = namestealerCheckBox.Checked;
             Properties.Settings.Default.Save();
 
@@ -336,7 +363,9 @@ namespace AnimeSoftware
         private void nickBox_MouseClick(object sender, MouseEventArgs e)
         {
             if (!(e.Button == MouseButtons.Right))
+            {
                 return;
+            }
 
             int currentMouseOverRow = nickBox.HitTest(e.X, e.Y).RowIndex;
 
@@ -364,7 +393,9 @@ namespace AnimeSoftware
                 foreach (DataGridViewCell i in nickBox.SelectedCells)
                 {
                     if (i.ColumnIndex == nickBox.Columns["idColumn"].Index)
+                    {
                         entityIndex.Add(Convert.ToInt32(i.Value));
+                    }
                 }
                 foreach (Entity x in Entity.List())
                 {
@@ -375,9 +406,9 @@ namespace AnimeSoftware
                 }
                 Visuals.ToGlow = ToGlow;
             }
-            if(e.ClickedItem == getByteNameToolStripMenuItem)
+            if (e.ClickedItem == getByteNameToolStripMenuItem)
             {
-                Console.WriteLine( new Entity(Convert.ToInt32(nickBox.SelectedRows[0].Cells[0].Value)).Name2);
+                Console.WriteLine(new Entity(Convert.ToInt32(nickBox.SelectedRows[0].Cells[0].Value)).Name2);
             }
         }
         private void toGlowListChange(GlowColor glowColor)
@@ -387,10 +418,14 @@ namespace AnimeSoftware
             foreach (DataGridViewCell i in nickBox.SelectedCells)
             {
                 if (i.ColumnIndex == nickBox.Columns["idColumn"].Index)
+                {
                     entityIndex.Add(Convert.ToInt32(i.Value));
-                if (i.ColumnIndex == nickBox.Columns["glowColumn"].Index)
-                    i.Style.BackColor = glowColor.ToColor;
+                }
 
+                if (i.ColumnIndex == nickBox.Columns["glowColumn"].Index)
+                {
+                    i.Style.BackColor = glowColor.ToColor;
+                }
             }
             foreach (Entity x in Entity.List())
             {
@@ -459,7 +494,9 @@ namespace AnimeSoftware
                 IsBackground = true,
             };
             if (Properties.Settings.Default.weaponspammer)
+            {
                 weaponspammerThread.Start();
+            }
         }
 
         private void fovTrackBar_Scroll(object sender, EventArgs e)
@@ -513,14 +550,20 @@ namespace AnimeSoftware
             if (customnameTextBox.Text == "for some reason I needed extra functions that this cheat does not imply" || customnameTextBox.Text == "sagiri best girl")
             {
                 if (!Properties.Settings.Default.unlock)
-                    this.Width += 145;
+                {
+                    Width += 145;
+                }
+
                 Properties.Settings.Default.unlock = true;
                 Properties.Settings.Default.Save();
             }
             if (customnameTextBox.Text == "")
             {
                 if (Properties.Settings.Default.unlock)
-                    this.Width -= 145;
+                {
+                    Width -= 145;
+                }
+
                 Properties.Settings.Default.unlock = false;
                 Properties.Settings.Default.Save();
             }
@@ -584,10 +627,13 @@ namespace AnimeSoftware
         private void velnameCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (velnameCheckBox.Checked)
+            {
                 if (MessageBox.Show("Make sure, that you forced infinity name switching exploit in your other cheat.\nIn other way close this window.") != DialogResult.OK)
                 {
                     velnameCheckBox.Checked = false;
                 }
+            }
+
             Properties.Settings.Default.velName = velnameCheckBox.Checked;
             Properties.Settings.Default.Save();
         }

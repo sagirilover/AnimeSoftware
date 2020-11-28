@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnimeSoftware.Injections
 {
-    class DllImport
+    internal class DllImport
     {
         [DllImport("kernel32.dll")]
-        internal static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, IntPtr nSize, ref UInt32 lpNumberOfBytesWritten);
+        internal static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, IntPtr nSize, ref uint lpNumberOfBytesWritten);
 
         [DllImport("kernel32.dll")]
         public static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] buffer, int size, int lpNumberOfBytesWritten);
@@ -23,13 +21,13 @@ namespace AnimeSoftware.Injections
         internal static extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress, IntPtr dwSize, int dwFreeType);
 
         [DllImport("kernel32.dll")]
-        internal static extern UInt32 WaitForSingleObject(IntPtr hProcess, uint dwMilliseconds);
+        internal static extern uint WaitForSingleObject(IntPtr hProcess, uint dwMilliseconds);
 
         [DllImport("kernel32.dll", SetLastError = true)]
         internal static extern IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttributes, IntPtr dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
 
         [DllImport("kernel32.dll", SetLastError = true, ExactSpelling = true)]
-        internal static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, IntPtr dwSize, UInt32 flAllocationType, UInt32 flProtect);
+        internal static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, IntPtr dwSize, uint flAllocationType, uint flProtect);
 
         [DllImport("kernel32.dll")]
         internal static extern bool CloseHandle(IntPtr hProcess);
@@ -65,7 +63,7 @@ namespace AnimeSoftware.Injections
 
         public IntPtr AlloacNewPage(IntPtr size)
         {
-            var Address = DllImport.VirtualAllocEx(Memory.pHandle, IntPtr.Zero, (IntPtr)4096, (int)0x1000 | (int)0x2000, 0x40);
+            IntPtr Address = DllImport.VirtualAllocEx(Memory.pHandle, IntPtr.Zero, (IntPtr)4096, 0x1000 | 0x2000, 0x40);
 
             AllocatedSize.Add(Address, size);
 
@@ -74,15 +72,17 @@ namespace AnimeSoftware.Injections
 
         public void Free()
         {
-            foreach (var key in AllocatedSize)
-                DllImport.VirtualFreeEx(Memory.pHandle, key.Key, 4096, (int)0x1000 | (int)0x2000);
+            foreach (KeyValuePair<IntPtr, IntPtr> key in AllocatedSize)
+            {
+                DllImport.VirtualFreeEx(Memory.pHandle, key.Key, 4096, 0x1000 | 0x2000);
+            }
         }
 
         public IntPtr Alloc(int size)
         {
             for (int i = 0; i < AllocatedSize.Count; ++i)
             {
-                var key = AllocatedSize.ElementAt(i).Key;
+                IntPtr key = AllocatedSize.ElementAt(i).Key;
                 int value = (int)AllocatedSize[key] + size;
                 if (value < 4096)
                 {

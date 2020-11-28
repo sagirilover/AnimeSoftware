@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using AnimeSoftware.Injections;
 using AnimeSoftware.Objects;
-using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Hacks
 {

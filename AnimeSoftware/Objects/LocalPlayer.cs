@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using AnimeSoftware.Offsets;
+using System;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using AnimeSoftware.Injections;
-using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Objects
 {
-    class LocalPlayer : IDisposable
+    internal class LocalPlayer : IDisposable
     {
         public void Dispose()
         {
 
         }
-        public static int Ptr
-        {
-            get
-            {
-                return Memory.Read<int>(Memory.Client + signatures.dwLocalPlayer);
-            }
-        }
+        public static int Ptr => Memory.Read<int>(Memory.Client + signatures.dwLocalPlayer);
 
         public static void GetName()
         {
@@ -37,16 +27,10 @@ namespace AnimeSoftware.Objects
 
             int ind = Index + 1;
 
-            var nameAddr = radarPtr + ind * radarStructSize + radarStructPos;
+            int nameAddr = radarPtr + ind * radarStructSize + radarStructPos;
             Name = Memory.ReadString(nameAddr, 64, enc);
         }
-        public static string GetName2
-        {
-            get
-            {
-                return Encoding.UTF8.GetString(pInfo.m_szPlayerName);
-            }
-        }
+        public static string GetName2 => Encoding.UTF8.GetString(pInfo.m_szPlayerName);
 
         public static string Name { get; set; }
 
@@ -55,26 +39,25 @@ namespace AnimeSoftware.Objects
         {
             Index = -1;
             while (Index == -1)
+            {
                 foreach (Entity x in Entity.List())
                 {
                     if (x.Health <= 0)
+                    {
                         continue;
+                    }
+
                     if (x.Ptr == Ptr)
                     {
                         Index = x.Index;
                         break;
                     }
                 }
-        }
-        public static int Index { get; set; }
-        
-        public static int ShotsFired
-        {
-            get
-            {
-                return Memory.Read<Int32>(Ptr + netvars.m_iShotsFired);
             }
         }
+        public static int Index { get; set; }
+
+        public static int ShotsFired => Memory.Read<int>(Ptr + netvars.m_iShotsFired);
         public static Vector Position
         {
             get
@@ -123,21 +106,9 @@ namespace AnimeSoftware.Objects
             Thread.Sleep(15);
             Memory.Write<int>(Memory.Client + signatures.dwForceJump, 4);
         }
-        public static int Flags
-        {
-            get
-            {
-                return Memory.Read<int>(Ptr + netvars.m_fFlags);
-            }
-        }
+        public static int Flags => Memory.Read<int>(Ptr + netvars.m_fFlags);
 
-        public static bool IsDead
-        {
-            get
-            {
-                return Health <= 0;
-            }
-        }
+        public static bool IsDead => Health <= 0;
         public static float Speed
         {
             get
@@ -162,10 +133,7 @@ namespace AnimeSoftware.Objects
         }
         public static int Use
         {
-            set
-            {
-                Memory.Write<int>(Memory.Read<int>(Memory.Client + CalcedOffsets.dwUse), value);
-            }
+            set => Memory.Write<int>(Memory.Read<int>(Memory.Client + CalcedOffsets.dwUse), value);
         }
         public static bool InGame
         {
@@ -178,64 +146,31 @@ namespace AnimeSoftware.Objects
 
         public static float SideSpeed
         {
-            set
-            {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.cl_sidespeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_cl_sidespeed));
-            }
+            set => Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.cl_sidespeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_cl_sidespeed));
         }
 
         public static float ForwardSpeed
         {
-            set
-            {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.cl_forwardspeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_cl_forwardspeed));
-            }
+            set => Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.cl_forwardspeed), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_cl_forwardspeed));
         }
 
         public static float viewmodel_x
         {
-            set
-            {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.viewmodel_x), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_viewmodel_x));
-            }
+            set => Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.viewmodel_x), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_viewmodel_x));
         }
 
         public static float viewmodel_y
         {
-            set
-            {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.viewmodel_y), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_viewmodel_y));
-            }
+            set => Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.viewmodel_y), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_viewmodel_y));
         }
 
         public static float viewmodel_z
         {
-            set
-            {
-                Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.viewmodel_z), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_viewmodel_z));
-            }
+            set => Memory.WriteBytes(Memory.Read<int>(Memory.Client + CalcedOffsets.viewmodel_z), BitConverter.GetBytes(BitConverter.ToInt32(BitConverter.GetBytes(value), 0) ^ CalcedOffsets.xor_viewmodel_z));
         }
-        public static int CrossHair
-        {
-            get
-            {
-                return Memory.Read<int>(Ptr + netvars.m_iCrosshairId);
-            }
-        }
-        public static bool Dormant
-        {
-            get
-            {
-                return Memory.Read<bool>(Ptr + signatures.m_bDormant);
-            }
-        }
-        public static int Health
-        {
-            get
-            {
-                return Memory.Read<int>(Ptr + netvars.m_iHealth);
-            }
-        }
+        public static int CrossHair => Memory.Read<int>(Ptr + netvars.m_iCrosshairId);
+        public static bool Dormant => Memory.Read<bool>(Ptr + signatures.m_bDormant);
+        public static int Health => Memory.Read<int>(Ptr + netvars.m_iHealth);
         public static int ActiveWeapon
         {
             get
@@ -258,37 +193,28 @@ namespace AnimeSoftware.Objects
         {
             get
             {
-                int ClientState = Memory.Read<Int32>(Memory.Engine + signatures.dwClientState);
+                int ClientState = Memory.Read<int>(Memory.Engine + signatures.dwClientState);
 
                 Vector viewAngles = Memory.Read<Vector>(ClientState + signatures.dwClientState_ViewAngles);
                 return viewAngles;
             }
             set
             {
-                int ClientState = Memory.Read<Int32>(Memory.Engine + signatures.dwClientState);
+                int ClientState = Memory.Read<int>(Memory.Engine + signatures.dwClientState);
 
                 Memory.Write<Vector>(ClientState + signatures.dwClientState_ViewAngles, value);
             }
         }
-        public static Vector PunchAngle
-        {
-            get
-            {
-                return Memory.Read<Vector>(Ptr + netvars.m_aimPunchAngle);
-            }
-        }
+        public static Vector PunchAngle => Memory.Read<Vector>(Ptr + netvars.m_aimPunchAngle);
         public static Vector LocalViewAngle
         {
-            set
-            {
-                Memory.Write<Vector>(Ptr + netvars.m_viewPunchAngle, value);
-            }
+            set => Memory.Write<Vector>(Ptr + netvars.m_viewPunchAngle, value);
         }
         public static float ViewAngleY
         {
             set
             {
-                int ClientState = Memory.Read<Int32>(Memory.Engine + signatures.dwClientState);
+                int ClientState = Memory.Read<int>(Memory.Engine + signatures.dwClientState);
 
                 Memory.Write<float>(ClientState + signatures.dwClientState_ViewAngles + 0x4, value);
             }

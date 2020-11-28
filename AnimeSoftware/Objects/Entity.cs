@@ -1,14 +1,11 @@
-﻿using System;
+﻿using AnimeSoftware.Offsets;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using AnimeSoftware.Offsets;
 
 namespace AnimeSoftware.Objects
 {
-    class Entity : IDisposable
+    internal class Entity : IDisposable
     {
         public void Dispose()
         {
@@ -16,13 +13,7 @@ namespace AnimeSoftware.Objects
         }
 
         public int Index;
-        public int Ptr
-        {
-            get
-            {
-                return Memory.Read<int>(Memory.Client + signatures.dwEntityList + (Index - 1) * 0x10);
-            }
-        }
+        public int Ptr => Memory.Read<int>(Memory.Client + signatures.dwEntityList + (Index - 1) * 0x10);
 
         public string Name
         {
@@ -41,36 +32,18 @@ namespace AnimeSoftware.Objects
 
                 int ind = Index + 1;
 
-                var nameAddr = radarPtr + ind * radarStructSize + radarStructPos;
+                int nameAddr = radarPtr + ind * radarStructSize + radarStructPos;
                 return Memory.ReadString(nameAddr, 64, enc);
 
             }
         }
-        public string Name2
-        {
-            get
-            {
-                return Encoding.UTF8.GetString(pInfo.m_szPlayerName);
-            }
-        }
+        public string Name2 => Encoding.UTF8.GetString(pInfo.m_szPlayerName);
         public GlowColor glowColor { get; set; }
         public GlowSettings glowSettings { get; set; }
         public bool Glowing { get; set; }
-        public int GlowIndex
-        {
-            get
-            {
-                return Memory.Read<int>(Ptr + netvars.m_iGlowIndex);
-            }
-        }
-        public float DistanceToPlayer
-        {
-            get
-            {
-                return Position.DistanceTo(LocalPlayer.Position);
-            }
-        }
-            
+        public int GlowIndex => Memory.Read<int>(Ptr + netvars.m_iGlowIndex);
+        public float DistanceToPlayer => Position.DistanceTo(LocalPlayer.Position);
+
         public Vector Velocity
         {
             get
@@ -90,18 +63,12 @@ namespace AnimeSoftware.Objects
                 pInfo = Memory.Read<int>(pInfo + 0xC);
                 pInfo = Memory.Read<int>(pInfo + 0x28 + (Index - 1) * 0x34);
                 player_info_s info = Memory.Read<player_info_s>(pInfo);
-                
+
                 return info;
             }
-        }   
-
-        public bool IsDead
-        {
-            get
-            {
-                return Health <= 0;
-            }
         }
+
+        public bool IsDead => Health <= 0;
 
         public float Speed
         {
@@ -130,29 +97,11 @@ namespace AnimeSoftware.Objects
                 return position;
             }
         }
-        public int Health
-        {
-            get
-            {
-                return Memory.Read<int>(Ptr + netvars.m_iHealth);
-            }
-        }
+        public int Health => Memory.Read<int>(Ptr + netvars.m_iHealth);
 
-        public bool Dormant
-        {
-            get
-            {
-                return Memory.Read<bool>(Ptr + signatures.m_bDormant);
-            }
-        }
+        public bool Dormant => Memory.Read<bool>(Ptr + signatures.m_bDormant);
 
-        public bool isTeam
-        {
-            get
-            {
-                return Memory.Read<int>(Ptr + netvars.m_iTeamNum) == Memory.Read<int>(LocalPlayer.Ptr+netvars.m_iTeamNum);
-            }
-        }
+        public bool isTeam => Memory.Read<int>(Ptr + netvars.m_iTeamNum) == Memory.Read<int>(LocalPlayer.Ptr + netvars.m_iTeamNum);
 
         public static Entity[] List()
         {
@@ -163,7 +112,9 @@ namespace AnimeSoftware.Objects
                 Entity entity = new Entity(i);
 
                 if (entity.Ptr == 0)
+                {
                     continue;
+                }
 
                 if (entity.Ptr == LocalPlayer.Ptr)
                 {
@@ -178,7 +129,7 @@ namespace AnimeSoftware.Objects
 
         public Vector BonePosition(int BoneID)
         {
-            int BoneMatrix = Memory.Read<Int32>(Ptr + netvars.m_dwBoneMatrix);
+            int BoneMatrix = Memory.Read<int>(Ptr + netvars.m_dwBoneMatrix);
             Vector position = new Vector
             {
                 x = Memory.Read<float>(BoneMatrix + 0x30 * BoneID + 0x0C),

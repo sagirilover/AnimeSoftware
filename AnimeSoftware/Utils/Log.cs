@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnimeSoftware.Utils
 {
-    class Log
+    internal class Log
     {
         public static void Error(params object[] args)
         {
