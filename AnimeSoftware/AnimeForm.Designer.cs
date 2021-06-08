@@ -23,8 +23,8 @@
         #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -43,10 +43,8 @@
             this.doorspammerButton = new System.Windows.Forms.Button();
             this.blockbotButton = new System.Windows.Forms.Button();
             this.fullrefreshButton = new System.Windows.Forms.Button();
-            this.namestealerCheckBox = new System.Windows.Forms.CheckBox();
             this.customnameTextBox = new System.Windows.Forms.TextBox();
             this.setupButton = new System.Windows.Forms.Button();
-            this.autostrafeCheckBox = new System.Windows.Forms.CheckBox();
             this.nickBoxContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.stealNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setGlowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,8 +57,6 @@
             this.stealWhenYouFriendlyfireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getByteNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rightspamButton = new System.Windows.Forms.CheckBox();
-            this.trashControl = new System.Windows.Forms.TabControl();
-            this.aimTab = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.smoothLabel = new System.Windows.Forms.Label();
             this.smoothTrackBar = new System.Windows.Forms.TrackBar();
@@ -68,15 +64,10 @@
             this.fovLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.fovTrackBar = new System.Windows.Forms.TrackBar();
-            this.label3 = new System.Windows.Forms.Label();
-            this.hitboxComboBox = new System.Windows.Forms.ComboBox();
             this.ffCheckBox = new System.Windows.Forms.CheckBox();
             this.aimbotCheckBox = new System.Windows.Forms.CheckBox();
-            this.unlockButton = new System.Windows.Forms.Button();
             this.perfectnadeCheckBox = new System.Windows.Forms.CheckBox();
             this.chatcleanerCheckBox = new System.Windows.Forms.CheckBox();
-            this.chokeTrackBar = new System.Windows.Forms.TrackBar();
-            this.label6 = new System.Windows.Forms.Label();
             this.clantagCheckBox = new System.Windows.Forms.CheckBox();
             this.velCheckBox = new System.Windows.Forms.CheckBox();
             this.velnameCheckBox = new System.Windows.Forms.CheckBox();
@@ -92,18 +83,15 @@
             this.trackBar4 = new System.Windows.Forms.TrackBar();
             this.trackBar5 = new System.Windows.Forms.TrackBar();
             this.label9 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.nickBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.nickBox)).BeginInit();
             this.nickBoxContextMenuStrip.SuspendLayout();
-            this.trashControl.SuspendLayout();
-            this.aimTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.smoothTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fovTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chokeTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.smoothTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.fovTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar5)).BeginInit();
             this.SuspendLayout();
             // 
             // refreshButton
@@ -134,11 +122,7 @@
             this.nickBox.AllowUserToResizeRows = false;
             this.nickBox.BackgroundColor = System.Drawing.Color.White;
             this.nickBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.nickBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idColumn,
-            this.nameColumn,
-            this.aliveColumn,
-            this.glowColumn});
+            this.nickBox.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.idColumn, this.nameColumn, this.aliveColumn, this.glowColumn});
             this.nickBox.GridColor = System.Drawing.Color.Silver;
             this.nickBox.Location = new System.Drawing.Point(12, 12);
             this.nickBox.Name = "nickBox";
@@ -192,7 +176,7 @@
             // bhopCheckBox
             // 
             this.bhopCheckBox.AutoSize = true;
-            this.bhopCheckBox.Location = new System.Drawing.Point(335, 35);
+            this.bhopCheckBox.Location = new System.Drawing.Point(335, 12);
             this.bhopCheckBox.Name = "bhopCheckBox";
             this.bhopCheckBox.Size = new System.Drawing.Size(53, 17);
             this.bhopCheckBox.TabIndex = 13;
@@ -255,17 +239,6 @@
             this.fullrefreshButton.UseVisualStyleBackColor = true;
             this.fullrefreshButton.Click += new System.EventHandler(this.fullrefreshButton_Click);
             // 
-            // namestealerCheckBox
-            // 
-            this.namestealerCheckBox.AutoSize = true;
-            this.namestealerCheckBox.Location = new System.Drawing.Point(335, 12);
-            this.namestealerCheckBox.Name = "namestealerCheckBox";
-            this.namestealerCheckBox.Size = new System.Drawing.Size(87, 17);
-            this.namestealerCheckBox.TabIndex = 20;
-            this.namestealerCheckBox.Text = "NameStealer";
-            this.namestealerCheckBox.UseVisualStyleBackColor = true;
-            this.namestealerCheckBox.CheckedChanged += new System.EventHandler(this.namestealerCheckBox_CheckedChanged);
-            // 
             // customnameTextBox
             // 
             this.customnameTextBox.Location = new System.Drawing.Point(12, 381);
@@ -284,26 +257,9 @@
             this.setupButton.UseVisualStyleBackColor = true;
             this.setupButton.Click += new System.EventHandler(this.setupButton_Click);
             // 
-            // autostrafeCheckBox
-            // 
-            this.autostrafeCheckBox.AutoSize = true;
-            this.autostrafeCheckBox.Location = new System.Drawing.Point(351, 100);
-            this.autostrafeCheckBox.Name = "autostrafeCheckBox";
-            this.autostrafeCheckBox.Size = new System.Drawing.Size(76, 17);
-            this.autostrafeCheckBox.TabIndex = 26;
-            this.autostrafeCheckBox.Text = "AutoStrafe";
-            this.autostrafeCheckBox.UseVisualStyleBackColor = true;
-            this.autostrafeCheckBox.CheckedChanged += new System.EventHandler(this.autostrafeCheckBox_CheckedChanged);
-            // 
             // nickBoxContextMenuStrip
             // 
-            this.nickBoxContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stealNameToolStripMenuItem,
-            this.setGlowToolStripMenuItem,
-            this.removeGlowToolStripMenuItem,
-            this.voteKickToolStripMenuItem,
-            this.stealWhenYouFriendlyfireToolStripMenuItem,
-            this.getByteNameToolStripMenuItem});
+            this.nickBoxContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.stealNameToolStripMenuItem, this.setGlowToolStripMenuItem, this.removeGlowToolStripMenuItem, this.voteKickToolStripMenuItem, this.stealWhenYouFriendlyfireToolStripMenuItem, this.getByteNameToolStripMenuItem});
             this.nickBoxContextMenuStrip.Name = "nickBoxContextMenuStrip";
             this.nickBoxContextMenuStrip.Size = new System.Drawing.Size(215, 136);
             this.nickBoxContextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.nickBoxContextMenuStrip_ItemClicked);
@@ -316,11 +272,7 @@
             // 
             // setGlowToolStripMenuItem
             // 
-            this.setGlowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.redToolStripMenuItem,
-            this.blueToolStripMenuItem,
-            this.greenToolStripMenuItem,
-            this.customToolStripMenuItem});
+            this.setGlowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.redToolStripMenuItem, this.blueToolStripMenuItem, this.greenToolStripMenuItem, this.customToolStripMenuItem});
             this.setGlowToolStripMenuItem.Name = "setGlowToolStripMenuItem";
             this.setGlowToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.setGlowToolStripMenuItem.Text = "Set Glow";
@@ -378,7 +330,7 @@
             // rightspamButton
             // 
             this.rightspamButton.AutoSize = true;
-            this.rightspamButton.Location = new System.Drawing.Point(335, 123);
+            this.rightspamButton.Location = new System.Drawing.Point(335, 35);
             this.rightspamButton.Name = "rightspamButton";
             this.rightspamButton.Size = new System.Drawing.Size(135, 30);
             this.rightspamButton.TabIndex = 28;
@@ -387,40 +339,10 @@
             this.rightspamButton.UseVisualStyleBackColor = true;
             this.rightspamButton.CheckedChanged += new System.EventHandler(this.rightspamButton_CheckedChanged);
             // 
-            // trashControl
-            // 
-            this.trashControl.Controls.Add(this.aimTab);
-            this.trashControl.Location = new System.Drawing.Point(591, 12);
-            this.trashControl.Name = "trashControl";
-            this.trashControl.SelectedIndex = 0;
-            this.trashControl.Size = new System.Drawing.Size(145, 371);
-            this.trashControl.TabIndex = 29;
-            // 
-            // aimTab
-            // 
-            this.aimTab.Controls.Add(this.label5);
-            this.aimTab.Controls.Add(this.smoothLabel);
-            this.aimTab.Controls.Add(this.smoothTrackBar);
-            this.aimTab.Controls.Add(this.rscCheckBox);
-            this.aimTab.Controls.Add(this.fovLabel);
-            this.aimTab.Controls.Add(this.label4);
-            this.aimTab.Controls.Add(this.fovTrackBar);
-            this.aimTab.Controls.Add(this.label3);
-            this.aimTab.Controls.Add(this.hitboxComboBox);
-            this.aimTab.Controls.Add(this.ffCheckBox);
-            this.aimTab.Controls.Add(this.aimbotCheckBox);
-            this.aimTab.Location = new System.Drawing.Point(4, 22);
-            this.aimTab.Name = "aimTab";
-            this.aimTab.Padding = new System.Windows.Forms.Padding(3);
-            this.aimTab.Size = new System.Drawing.Size(137, 345);
-            this.aimTab.TabIndex = 1;
-            this.aimTab.Text = "Aimbot";
-            this.aimTab.UseVisualStyleBackColor = true;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 180);
+            this.label5.Location = new System.Drawing.Point(335, 326);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 10;
@@ -428,7 +350,7 @@
             // 
             // smoothLabel
             // 
-            this.smoothLabel.Location = new System.Drawing.Point(20, 222);
+            this.smoothLabel.Location = new System.Drawing.Point(338, 368);
             this.smoothLabel.Name = "smoothLabel";
             this.smoothLabel.Size = new System.Drawing.Size(100, 17);
             this.smoothLabel.TabIndex = 9;
@@ -438,10 +360,9 @@
             // smoothTrackBar
             // 
             this.smoothTrackBar.AutoSize = false;
-            this.smoothTrackBar.BackColor = System.Drawing.Color.White;
-            this.smoothTrackBar.Location = new System.Drawing.Point(20, 196);
-            this.smoothTrackBar.Maximum = 10000;
-            this.smoothTrackBar.Minimum = 1;
+            this.smoothTrackBar.BackColor = System.Drawing.SystemColors.Control;
+            this.smoothTrackBar.Location = new System.Drawing.Point(338, 342);
+            this.smoothTrackBar.Maximum = 1000;
             this.smoothTrackBar.Name = "smoothTrackBar";
             this.smoothTrackBar.Size = new System.Drawing.Size(100, 27);
             this.smoothTrackBar.TabIndex = 8;
@@ -451,7 +372,7 @@
             // rscCheckBox
             // 
             this.rscCheckBox.AutoSize = true;
-            this.rscCheckBox.Location = new System.Drawing.Point(20, 47);
+            this.rscCheckBox.Location = new System.Drawing.Point(349, 227);
             this.rscCheckBox.Name = "rscCheckBox";
             this.rscCheckBox.Size = new System.Drawing.Size(48, 17);
             this.rscCheckBox.TabIndex = 7;
@@ -461,7 +382,7 @@
             // 
             // fovLabel
             // 
-            this.fovLabel.Location = new System.Drawing.Point(20, 158);
+            this.fovLabel.Location = new System.Drawing.Point(338, 304);
             this.fovLabel.Name = "fovLabel";
             this.fovLabel.Size = new System.Drawing.Size(100, 13);
             this.fovLabel.TabIndex = 6;
@@ -471,7 +392,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 114);
+            this.label4.Location = new System.Drawing.Point(335, 260);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(28, 13);
             this.label4.TabIndex = 5;
@@ -480,36 +401,18 @@
             // fovTrackBar
             // 
             this.fovTrackBar.AutoSize = false;
-            this.fovTrackBar.BackColor = System.Drawing.Color.White;
-            this.fovTrackBar.Location = new System.Drawing.Point(20, 130);
-            this.fovTrackBar.Maximum = 36000;
+            this.fovTrackBar.BackColor = System.Drawing.SystemColors.Control;
+            this.fovTrackBar.Location = new System.Drawing.Point(338, 276);
+            this.fovTrackBar.Maximum = 18000;
             this.fovTrackBar.Name = "fovTrackBar";
             this.fovTrackBar.Size = new System.Drawing.Size(100, 27);
             this.fovTrackBar.TabIndex = 4;
             this.fovTrackBar.Scroll += new System.EventHandler(this.fovTrackBar_Scroll);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 67);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Bone";
-            // 
-            // hitboxComboBox
-            // 
-            this.hitboxComboBox.FormattingEnabled = true;
-            this.hitboxComboBox.Location = new System.Drawing.Point(20, 83);
-            this.hitboxComboBox.Name = "hitboxComboBox";
-            this.hitboxComboBox.Size = new System.Drawing.Size(82, 21);
-            this.hitboxComboBox.TabIndex = 2;
-            this.hitboxComboBox.SelectedIndexChanged += new System.EventHandler(this.hitboxComboBox_SelectedIndexChanged);
-            // 
             // ffCheckBox
             // 
             this.ffCheckBox.AutoSize = true;
-            this.ffCheckBox.Location = new System.Drawing.Point(20, 29);
+            this.ffCheckBox.Location = new System.Drawing.Point(349, 209);
             this.ffCheckBox.Name = "ffCheckBox";
             this.ffCheckBox.Size = new System.Drawing.Size(82, 17);
             this.ffCheckBox.TabIndex = 1;
@@ -520,27 +423,18 @@
             // aimbotCheckBox
             // 
             this.aimbotCheckBox.AutoSize = true;
-            this.aimbotCheckBox.Location = new System.Drawing.Point(6, 6);
+            this.aimbotCheckBox.Location = new System.Drawing.Point(335, 186);
             this.aimbotCheckBox.Name = "aimbotCheckBox";
-            this.aimbotCheckBox.Size = new System.Drawing.Size(59, 17);
+            this.aimbotCheckBox.Size = new System.Drawing.Size(58, 17);
             this.aimbotCheckBox.TabIndex = 0;
-            this.aimbotCheckBox.Text = "Enable";
+            this.aimbotCheckBox.Text = "Aimbot";
             this.aimbotCheckBox.UseVisualStyleBackColor = true;
             this.aimbotCheckBox.CheckedChanged += new System.EventHandler(this.aimbotCheckBox_CheckedChanged);
-            // 
-            // unlockButton
-            // 
-            this.unlockButton.Location = new System.Drawing.Point(335, 413);
-            this.unlockButton.Name = "unlockButton";
-            this.unlockButton.Size = new System.Drawing.Size(10, 10);
-            this.unlockButton.TabIndex = 31;
-            this.unlockButton.UseVisualStyleBackColor = true;
-            this.unlockButton.Click += new System.EventHandler(this.unlockButton_Click);
             // 
             // perfectnadeCheckBox
             // 
             this.perfectnadeCheckBox.AutoSize = true;
-            this.perfectnadeCheckBox.Location = new System.Drawing.Point(335, 159);
+            this.perfectnadeCheckBox.Location = new System.Drawing.Point(335, 71);
             this.perfectnadeCheckBox.Name = "perfectnadeCheckBox";
             this.perfectnadeCheckBox.Size = new System.Drawing.Size(68, 17);
             this.perfectnadeCheckBox.TabIndex = 34;
@@ -551,7 +445,7 @@
             // chatcleanerCheckBox
             // 
             this.chatcleanerCheckBox.AutoSize = true;
-            this.chatcleanerCheckBox.Location = new System.Drawing.Point(335, 182);
+            this.chatcleanerCheckBox.Location = new System.Drawing.Point(335, 94);
             this.chatcleanerCheckBox.Name = "chatcleanerCheckBox";
             this.chatcleanerCheckBox.Size = new System.Drawing.Size(85, 17);
             this.chatcleanerCheckBox.TabIndex = 35;
@@ -559,29 +453,10 @@
             this.chatcleanerCheckBox.UseVisualStyleBackColor = true;
             this.chatcleanerCheckBox.CheckedChanged += new System.EventHandler(this.chatcleanerCheckBox_CheckedChanged);
             // 
-            // chokeTrackBar
-            // 
-            this.chokeTrackBar.AutoSize = false;
-            this.chokeTrackBar.Location = new System.Drawing.Point(335, 71);
-            this.chokeTrackBar.Maximum = 100;
-            this.chokeTrackBar.Name = "chokeTrackBar";
-            this.chokeTrackBar.Size = new System.Drawing.Size(104, 23);
-            this.chokeTrackBar.TabIndex = 36;
-            this.chokeTrackBar.Scroll += new System.EventHandler(this.chokeTrackBar_Scroll);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(335, 55);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 13);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "Choke Percentage";
-            // 
             // clantagCheckBox
             // 
             this.clantagCheckBox.AutoSize = true;
-            this.clantagCheckBox.Location = new System.Drawing.Point(335, 205);
+            this.clantagCheckBox.Location = new System.Drawing.Point(335, 117);
             this.clantagCheckBox.Name = "clantagCheckBox";
             this.clantagCheckBox.Size = new System.Drawing.Size(66, 17);
             this.clantagCheckBox.TabIndex = 38;
@@ -592,7 +467,7 @@
             // velCheckBox
             // 
             this.velCheckBox.AutoSize = true;
-            this.velCheckBox.Location = new System.Drawing.Point(335, 228);
+            this.velCheckBox.Location = new System.Drawing.Point(335, 140);
             this.velCheckBox.Name = "velCheckBox";
             this.velCheckBox.Size = new System.Drawing.Size(82, 17);
             this.velCheckBox.TabIndex = 40;
@@ -604,7 +479,7 @@
             // 
             this.velnameCheckBox.AutoSize = true;
             this.velnameCheckBox.Enabled = false;
-            this.velnameCheckBox.Location = new System.Drawing.Point(351, 251);
+            this.velnameCheckBox.Location = new System.Drawing.Point(351, 163);
             this.velnameCheckBox.Name = "velnameCheckBox";
             this.velnameCheckBox.Size = new System.Drawing.Size(111, 17);
             this.velnameCheckBox.TabIndex = 41;
@@ -674,9 +549,8 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(514, 222);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 48;
-            this.label7.Text = "label7";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
@@ -684,9 +558,8 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(514, 147);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.Size = new System.Drawing.Size(0, 13);
             this.label8.TabIndex = 49;
-            this.label8.Text = "label8";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // trackBar3
@@ -732,33 +605,36 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 431);
+            this.ClientSize = new System.Drawing.Size(593, 431);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.smoothLabel);
             this.Controls.Add(this.label9);
+            this.Controls.Add(this.smoothTrackBar);
             this.Controls.Add(this.trackBar5);
+            this.Controls.Add(this.rscCheckBox);
             this.Controls.Add(this.trackBar4);
+            this.Controls.Add(this.fovLabel);
             this.Controls.Add(this.trackBar3);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label8);
+            this.Controls.Add(this.fovTrackBar);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.ffCheckBox);
             this.Controls.Add(this.trackBar2);
+            this.Controls.Add(this.aimbotCheckBox);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.clanButton);
             this.Controls.Add(this.clanTextBox);
             this.Controls.Add(this.velnameCheckBox);
             this.Controls.Add(this.velCheckBox);
             this.Controls.Add(this.clantagCheckBox);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.chokeTrackBar);
             this.Controls.Add(this.chatcleanerCheckBox);
             this.Controls.Add(this.perfectnadeCheckBox);
-            this.Controls.Add(this.unlockButton);
-            this.Controls.Add(this.trashControl);
             this.Controls.Add(this.rightspamButton);
-            this.Controls.Add(this.autostrafeCheckBox);
             this.Controls.Add(this.setupButton);
             this.Controls.Add(this.customnameTextBox);
-            this.Controls.Add(this.namestealerCheckBox);
             this.Controls.Add(this.fullrefreshButton);
             this.Controls.Add(this.blockbotButton);
             this.Controls.Add(this.doorspammerButton);
@@ -776,22 +652,17 @@
             this.Text = "Animesoftware";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.AnimeForm_Shown);
-            ((System.ComponentModel.ISupportInitialize)(this.nickBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.nickBox)).EndInit();
             this.nickBoxContextMenuStrip.ResumeLayout(false);
-            this.trashControl.ResumeLayout(false);
-            this.aimTab.ResumeLayout(false);
-            this.aimTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.smoothTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fovTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chokeTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.smoothTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.fovTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.trackBar5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -805,10 +676,8 @@
         private System.Windows.Forms.Button doorspammerButton;
         private System.Windows.Forms.Button blockbotButton;
         private System.Windows.Forms.Button fullrefreshButton;
-        private System.Windows.Forms.CheckBox namestealerCheckBox;
         private System.Windows.Forms.TextBox customnameTextBox;
         private System.Windows.Forms.Button setupButton;
-        private System.Windows.Forms.CheckBox autostrafeCheckBox;
         private System.Windows.Forms.ContextMenuStrip nickBoxContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem stealNameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setGlowToolStripMenuItem;
@@ -823,12 +692,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn aliveColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn glowColumn;
         private System.Windows.Forms.CheckBox rightspamButton;
-        private System.Windows.Forms.TabControl trashControl;
-        private System.Windows.Forms.TabPage aimTab;
         private System.Windows.Forms.CheckBox aimbotCheckBox;
         private System.Windows.Forms.TrackBar fovTrackBar;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox hitboxComboBox;
         private System.Windows.Forms.CheckBox ffCheckBox;
         private System.Windows.Forms.Label fovLabel;
         private System.Windows.Forms.Label label4;
@@ -836,12 +701,9 @@
         private System.Windows.Forms.Label smoothLabel;
         private System.Windows.Forms.TrackBar smoothTrackBar;
         private System.Windows.Forms.CheckBox rscCheckBox;
-        private System.Windows.Forms.Button unlockButton;
         private System.Windows.Forms.ToolStripMenuItem stealWhenYouFriendlyfireToolStripMenuItem;
         private System.Windows.Forms.CheckBox perfectnadeCheckBox;
         private System.Windows.Forms.CheckBox chatcleanerCheckBox;
-        private System.Windows.Forms.TrackBar chokeTrackBar;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox clantagCheckBox;
         private System.Windows.Forms.CheckBox velCheckBox;
         private System.Windows.Forms.CheckBox velnameCheckBox;

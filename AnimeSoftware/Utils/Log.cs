@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace AnimeSoftware.Utils
 {
-    class Log
+    internal class Log
     {
         public static void Error(params object[] args)
         {
-            Console.WriteLine($"[{DateTime.Now.ToString()}] [Error] {string.Join(" ", args.Select(x => x.ToString()))}");
+            Console.WriteLine(
+                $"[{DateTime.Now.ToString()}] [Error] {string.Join(" ", args.Select(x => x.ToString()))}");
         }
 
         public static void Info(params object[] args)
         {
-
             Console.WriteLine($"[{DateTime.Now.ToString()}] [Info] {string.Join(" ", args.Select(x => x.ToString()))}");
         }
 
@@ -23,7 +23,8 @@ namespace AnimeSoftware.Utils
         {
             //if (!Properties.Settings.Default.debug)
             //    return;
-            Console.WriteLine($"[{DateTime.Now.ToString()}] [Debug] {string.Join(" ", args.Select(x => x.GetType().Equals(typeof(IntPtr)) ? ((IntPtr)x).ToString("X") : x.ToString()))}");
+            Console.WriteLine(
+                $"[{DateTime.Now.ToString()}] [Debug] {string.Join(" ", args.Select(x => x.GetType().Equals(typeof(IntPtr)) ? ((IntPtr) x).ToString("X") : x.ToString()))}");
         }
     }
 }
