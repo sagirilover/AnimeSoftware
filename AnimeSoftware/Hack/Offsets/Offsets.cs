@@ -98,7 +98,7 @@ namespace AnimeSoftware.Offsets
                                                    Memory.FindPattern("83 B8 ? ? ? ? ? 0F 94 C0 C3", Memory.Engine,
                                                        Memory.EngineSize) + 2) + 0;
             dwClientState_ViewAngles = Memory.Read<int>(Memory.Engine +
-                                                        Memory.FindPattern("F3 0F 11 80 ? ? ? ? D9 46 04 D9 05",
+                                                        Memory.FindPattern("F3 0F 11 80 ? ? ? ? F3 0F 10 44 24 38",
                                                             Memory.Engine, Memory.EngineSize) + 4) + 0;
             clientstate_delta_ticks = Memory.Read<int>(Memory.Engine +
                                                        Memory.FindPattern(
@@ -219,10 +219,6 @@ namespace AnimeSoftware.Offsets
             dwbSendPackets = Memory.Engine +
                 Memory.FindPattern("B3 01 8B 01 8B 40 10 FF D0 84 C0 74 0F 80 BF ? ? ? ? ? 0F 84", Memory.Engine,
                     Memory.EngineSize) + 1 - Memory.Engine;
-            dwppDirect3DDevice9 =
-                Memory.Read<int>(Memory.vstdlib +
-                                 Memory.FindPattern("A1 ? ? ? ? 50 8B 08 FF 51 0C", Memory.vstdlib,
-                                     Memory.vstdlibSize) + 1) + 0 - Memory.vstdlib;
             m_pStudioHdr = Memory.Read<int>(Memory.Client +
                                             Memory.FindPattern(
                                                 "8B B6 ? ? ? ? 85 F6 74 05 83 3E 00 75 02 33 F6 F3 0F 10 44 24",

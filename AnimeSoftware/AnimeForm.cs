@@ -55,7 +55,7 @@ namespace AnimeSoftware
             CalcedOffsets.Init();
             Signatures.Init();
             Netvars.Init();
-
+            
             Properties.Settings.Default.namestealer = false;
             Properties.Settings.Default.Save();
             Start();

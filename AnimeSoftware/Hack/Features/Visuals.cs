@@ -39,9 +39,9 @@ namespace AnimeSoftware.Hacks
 
                     var p = new Player(i);
 
-                    Memory.Write((IntPtr) glowManager + p.GlowIndex * 0x38 + 0x4,
+                    Memory.Write((IntPtr) glowManager + p.GlowIndex * 0x38 + 0x8,
                         GlowColors[i]);
-                    Memory.Write((IntPtr) glowManager + p.GlowIndex * 0x38 + 0x24,
+                    Memory.Write((IntPtr) glowManager + p.GlowIndex * 0x38 + 0x28,
                         GlowSettings[i]);
                 }
             }

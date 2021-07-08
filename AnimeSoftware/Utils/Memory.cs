@@ -247,6 +247,8 @@ namespace AnimeSoftware
                     }
                 }
 
+            Log.Error($"Warning! {string.Join(" ", pattern.Select(x=>x.ToString("X")))} {mask} is broken.");
+            
             return 0;
         }
 
