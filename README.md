@@ -1,5 +1,6 @@
 # AnimeSoftware
-CSGO External hack written in C# for griefing.
+CSGO External hack written in C# for griefing.  
+C# Internal base [SoAnimeSoftware](https://github.com/sagirilover/SoAnimeSoftware).
 
 ### Information
 This is not a hack in the typical sense.  It is not intended to dominate opponents, but to grief teammates.  
