@@ -1,0 +1,39 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+          submodules: true
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Build AnimeSoftware
+      working-directory: ./AnimeSoftware
+      run: msbuild AnimeSoftware.csproj /p:Configuration=Release /p:VisualStudioVersion=16.0
+    - name: Move before upload
+      working-directory: ./AnimeSoftware/bin/Release
+      run: |
+            mkdir ready
+            Move-Item -Path .\AnimeSoftware.exe -Destination .\ready\AnimeSoftware.exe
+      shell: pwsh
+    - name: SHA1 AnimeSoftware
+      working-directory: ./AnimeSoftware/bin/Release/ready
+      run: sha1sum AnimeSoftware.exe > AnimeSoftware.exe.sha1
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Release AnimeSoftware
+        path: ./AnimeSoftware/bin/Release/ready
