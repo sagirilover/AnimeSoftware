@@ -33,7 +33,7 @@ namespace AnimeSoftware.Hack.Models
         
         public Weapon ActiveWeapon => new Weapon(Memory.Read<int>(Ptr + Netvars.m_hActiveWeapon) & 0xFFF);
         
-        public Weapon Weapon(int index) => new Weapon(Memory.Read<int>(Ptr + Netvars.m_hMyWeapons + (index - 1) * 0x4) & 0xFFF);
+        public Weapon Weapon(int index) => new Weapon(Memory.Read<short>(Ptr + Netvars.m_hMyWeapons + (index - 1) * 0x4) & 0xFFF);
         
         public Vector GetBonePosition(int boneId)
         {
